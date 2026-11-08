@@ -1,0 +1,7 @@
+project_id = "replace-with-your-supabase-project-ref"
+
+[functions.device-telemetry]
+verify_jwt = false
+
+[functions.booking-control]
+verify_jwt = true
