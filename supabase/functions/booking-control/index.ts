@@ -1,3 +1,4 @@
+// Checks that the signed-in user owns the booking before the outlet is switched on
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const jsonHeaders = {
