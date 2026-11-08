@@ -1,0 +1,9 @@
+# secrets: never commit
+devices.json
+.env
+.env.*
+!.env.example
+!.env.tapo.example
+*.pem
+node_modules/
+__pycache__/

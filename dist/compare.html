@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compare at 100%</title>
+<style>
+  :root { --x: -30px; --y: -370px; }
+  body { margin: 0; padding: 12px; font-family: sans-serif; background: #fff; }
+  .grid { display: grid; grid-template-columns: 520px 520px; gap: 12px; }
+  .box p { margin: 0; padding: 4px 8px; background: #eee; font-size: 14px; }
+  .crop { width: 100%; height: 260px; overflow: hidden; }
+  .crop img { display: block; margin-left: var(--x); margin-top: var(--y); max-width: none; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="box"><p>PNG, 195.8 KB</p><div class="crop"><img src="img/prototype.png" alt=""></div></div>
+  <div class="box"><p>JPEG q80, 83.5 KB</p><div class="crop"><img src="img/prototype-q80.jpg" alt=""></div></div>
+  <div class="box"><p>JPEG q40, 37.3 KB</p><div class="crop"><img src="img/prototype-q40.jpg" alt=""></div></div>
+  <div class="box"><p>WebP q80, 50.7 KB</p><div class="crop"><img src="img/prototype.webp" alt=""></div></div>
+</div>
+</body>
+</html>
