@@ -275,7 +275,7 @@ begin
     v_desired := true;
     v_status := 'in_use';
     v_reason := 'Power draw confirms that the washer is running';
-    update public.machines set last_busy_at = v_now where machine_id = v_machine.machine_id;
+    update public.machines set last_busy_at = v_now where public.machines.machine_id = v_machine.machine_id;
   elsif v_booking.booking_id is not null and v_booking.status = 'active' then
     if v_machine.last_busy_at is not null
        and v_booking.started_at is not null
