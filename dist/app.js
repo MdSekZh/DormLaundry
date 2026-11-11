@@ -1350,9 +1350,35 @@
         <div class="field"><label for="machineName">Name</label><input id="machineName" type="text" maxlength="40" placeholder="Washer 4" value="${escapeHtml(machine?.machine_name || "")}"></div>
         <div class="field"><label for="machineLocation">Location</label><input id="machineLocation" type="text" maxlength="80" placeholder="Main Dormitory Laundry Room" value="${escapeHtml(machine?.location || "Main Dormitory Laundry Room")}"></div>
         ${isNew ? `<p class="booking-summary" data-state="ok">After saving you will get the smart plug ID and token for this machine (shown once).</p>` : `<button class="secondary-button" type="button" data-issue-plug>Smart plug: get ID and token</button>`}`,
-      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button><button class="primary-button" type="button" data-save-machine>${isNew ? "Add machine" : "Save changes"}</button>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button>${isNew ? "" : `<button class="danger-button" type="button" data-delete-machine>Delete machine</button>`}<button class="primary-button" type="button" data-save-machine>${isNew ? "Add machine" : "Save changes"}</button>`,
     });
     dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-delete-machine]")?.addEventListener("click", async () => {
+      const text = `Delete ${machine.machine_name}? Its bookings, fault reports and smart plug will be deleted too. This cannot be undone.`;
+      if (!window.confirm(text)) return;
+      try {
+        if (isLive) {
+          await api("/rest/v1/rpc/admin_delete_machine", {
+            method: "POST",
+            body: JSON.stringify({ p_machine_id: Number(machineId) }),
+          });
+          await loadData();
+        } else {
+          if (state.bookings.some((b) => String(b.machine_id) === String(machineId) && normalizeStatus(b.status) === "active")) {
+            throw new Error("This machine is in use now. Wait until the wash ends.");
+          }
+          state.machines = state.machines.filter((m) => String(m.machine_id) !== String(machineId));
+          state.bookings = state.bookings.filter((b) => String(b.machine_id) !== String(machineId));
+          state.faults = state.faults.filter((f) => String(f.machine_id) !== String(machineId));
+          saveDemoData();
+        }
+        closeDialog();
+        renderAdmin();
+        showToast("Machine deleted", machine.machine_name);
+      } catch (error) {
+        showToast("Delete failed", error.message, "error");
+      }
+    });
     dialog.querySelector("[data-issue-plug]")?.addEventListener("click", () => {
       if (window.confirm("Issue a new token? The old token of this machine's plug will stop working.")) showPlugCredentials(machineId);
     });
