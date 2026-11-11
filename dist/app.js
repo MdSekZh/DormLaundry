@@ -1,1693 +1,1738 @@
-:root {
-  --navy-950: #0b2238;
-  --navy-900: #102f4b;
-  --navy-800: #173d5d;
-  --navy-700: #24516f;
-  --ink: #17314a;
-  --muted: #62788d;
-  --line: #d5e0e9;
-  --surface: #ffffff;
-  --surface-soft: #f4f7fa;
-  --blue: #237bd1;
-  --blue-soft: #e7f1fc;
-  --teal: #128886;
-  --teal-soft: #e1f4f1;
-  --green: #2f8138;
-  --green-soft: #e8f5ea;
-  --red: #d34c42;
-  --red-soft: #fdecea;
-  --amber: #b66b0d;
-  --amber-soft: #fff2dc;
-  --shadow: 0 18px 50px rgba(16, 47, 75, 0.12);
-  --radius-lg: 28px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 320px;
-  background: var(--surface-soft);
-  color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 92% 4%, rgba(18, 136, 134, 0.13), transparent 25rem),
-    linear-gradient(180deg, #eef5f7 0, #f6f8fa 26rem, #f4f7fa 100%);
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button,
-a,
-select {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid rgba(35, 123, 209, 0.35);
-  outline-offset: 2px;
-}
-
-.is-hidden {
-  display: none !important;
-}
-
-.app-shell {
-  min-height: 100vh;
-}
-
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 12px clamp(18px, 4vw, 56px);
-  color: #fff;
-  background: rgba(16, 47, 75, 0.97);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(14px);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  color: inherit;
-  text-decoration: none;
-}
-
-.brand strong,
-.brand small {
-  display: block;
-}
-
-.brand strong {
-  font-size: 18px;
-  letter-spacing: 0.01em;
-}
-
-.brand small {
-  margin-top: 3px;
-  color: #bfd0df;
-  font-size: 12px;
-}
-
-.brand-mark {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: var(--teal);
-  border-radius: 50%;
-}
-
-.brand-mark svg {
-  width: 34px;
-  height: 34px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-}
-
-.brand-mark .brand-mark-inner {
-  stroke-width: 2.1;
-  stroke-dasharray: 9 5.14;
-  transform-box: fill-box;
-  transform-origin: center;
-  /* Short intro animation: ~4.8 s, then stops (WCAG 2.2.2). Disabled by prefers-reduced-motion. */
-  animation: drum-spin 1.6s ease-in-out 3;
-}
-
-@keyframes drum-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.mode-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  color: #dff6f2;
-  background: rgba(18, 136, 134, 0.27);
-  border: 1px solid rgba(142, 225, 215, 0.32);
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.icon-button,
-.ghost-button,
-.primary-button,
-.secondary-button,
-.danger-button,
-.text-button {
-  min-height: 44px;
-  border: 0;
-  cursor: pointer;
-  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
-}
-
-.icon-button:active,
-.ghost-button:active,
-.primary-button:active,
-.secondary-button:active,
-.danger-button:active,
-.text-button:active {
-  transform: translateY(1px);
-}
-
-.icon-button {
-  width: 44px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0;
-  color: inherit;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 50%;
-}
-
-.icon-button:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.icon-button svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.ghost-button,
-.primary-button,
-.secondary-button,
-.danger-button {
-  padding: 10px 18px;
-  border-radius: 12px;
-  font-weight: 700;
-}
-
-.ghost-button {
-  color: #fff;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.33);
-}
-
-.ghost-button:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.primary-button {
-  color: #fff;
-  background: var(--blue);
-  box-shadow: 0 9px 24px rgba(35, 123, 209, 0.2);
-}
-
-.primary-button:hover {
-  background: #176ec0;
-}
-
-.primary-button:disabled,
-.secondary-button:disabled,
-.danger-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.52;
-}
-
-.secondary-button {
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-.secondary-button:hover {
-  background: var(--surface-soft);
-}
-
-.danger-button {
-  color: #fff;
-  background: var(--red);
-}
-
-.text-button {
-  min-height: 38px;
-  padding: 7px 2px;
-  color: var(--blue);
-  background: transparent;
-  font-weight: 700;
-}
-
-.app-main {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 42px 0 70px;
-}
-
-.login-layout {
-  min-height: calc(100vh - 188px);
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.78fr);
-  align-items: stretch;
-  gap: 24px;
-}
-
-.intro-panel,
-.login-card,
-.panel,
-.machine-card,
-.stat-card {
-  background: rgba(255, 255, 255, 0.93);
-  border: 1px solid rgba(199, 214, 225, 0.95);
-  box-shadow: var(--shadow);
-}
-
-.intro-panel {
-  position: relative;
-  min-height: 570px;
-  overflow: hidden;
-  padding: clamp(30px, 5vw, 62px);
-  color: #fff;
-  background:
-    linear-gradient(135deg, rgba(16, 47, 75, 0.99), rgba(13, 57, 76, 0.98)),
-    var(--navy-900);
-  border-color: transparent;
-  border-radius: var(--radius-lg);
-}
-
-.intro-panel::after {
-  content: "";
-  position: absolute;
-  right: -105px;
-  bottom: -125px;
-  width: 360px;
-  height: 360px;
-  border: 62px solid rgba(18, 136, 134, 0.7);
-  border-radius: 50%;
-}
-
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--teal);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.intro-panel .eyebrow {
-  color: #7ed6ce;
-}
-
-.intro-panel h1,
-.page-title h1,
-.login-card h2,
-.dialog h2 {
-  margin: 0;
-  color: inherit;
-  line-height: 1.08;
-}
-
-.intro-panel h1 {
-  position: relative;
-  z-index: 1;
-  max-width: 640px;
-  font-size: clamp(42px, 6vw, 76px);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-}
-
-.intro-copy {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  margin: 24px 0 36px;
-  color: #cfdfeb;
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.55;
-}
-
-.feature-list {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #e7f1f7;
-}
-
-.feature-list svg {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-  fill: none;
-  stroke: #67c7be;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.login-card {
-  align-self: center;
-  padding: clamp(26px, 4vw, 42px);
-  border-radius: var(--radius-lg);
-}
-
-.login-card h2 {
-  font-size: 30px;
-}
-
-.login-card > p:not(.eyebrow) {
-  margin: 12px 0 26px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.field {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 17px;
-}
-
-.field label,
-.field-label {
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid #bdcedb;
-  border-radius: 12px;
-}
-
-.field textarea {
-  min-height: 112px;
-  resize: vertical;
-  line-height: 1.5;
-}
-
-.field input::placeholder,
-.field textarea::placeholder {
-  color: #8c9eae;
-}
-
-.segmented {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 7px;
-  padding: 5px;
-  background: #eaf0f4;
-  border-radius: 14px;
-}
-
-.segmented button {
-  min-height: 44px;
-  padding: 8px 12px;
-  color: var(--muted);
-  background: transparent;
-  border: 0;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.segmented button.is-active {
-  color: var(--ink);
-  background: #fff;
-  box-shadow: 0 4px 13px rgba(16, 47, 75, 0.1);
-}
-
-.login-submit {
-  width: 100%;
-  margin-top: 7px;
-}
-
-.login-note {
-  display: flex;
-  gap: 9px;
-  margin: 18px 0 0;
-  padding: 13px;
-  color: #5f7181;
-  background: #f2f6f8;
-  border-radius: 12px;
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.login-note svg {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  fill: none;
-  stroke: var(--teal);
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.page-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 27px;
-}
-
-.page-title h1 {
-  font-size: clamp(34px, 5vw, 54px);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-}
-
-.page-title p:not(.eyebrow) {
-  margin: 10px 0 0;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.user-chip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px 8px 8px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-}
-
-.avatar {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: var(--teal);
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.user-chip strong,
-.user-chip small {
-  display: block;
-}
-
-.user-chip strong {
-  max-width: 190px;
-  overflow: hidden;
-  font-size: 13px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.user-chip small {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.section-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  margin: 34px 0 17px;
-}
-
-.section-head h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 500;
-}
-
-.section-head p {
-  margin: 5px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.machine-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.machine-card {
-  position: relative;
-  overflow: hidden;
-  padding: 22px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 12px 35px rgba(16, 47, 75, 0.08);
-}
-
-.machine-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 5px;
-  background: var(--blue);
-}
-
-.machine-card[data-status="in_use"]::before {
-  background: var(--amber);
-}
-
-.machine-card[data-status="reserved"]::before,
-.machine-card[data-status="starting"]::before {
-  background: var(--teal);
-}
-
-.machine-card[data-status="out_of_service"]::before,
-.machine-card[data-status="offline"]::before {
-  background: var(--red);
-}
-
-.machine-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.machine-visual {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  color: var(--navy-800);
-  background: #edf3f7;
-  border-radius: 18px;
-}
-
-.machine-visual svg {
-  width: 40px;
-  height: 40px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 30px;
-  padding: 6px 10px;
-  color: var(--green);
-  background: var(--green-soft);
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.status-pill::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  background: currentColor;
-  border-radius: 50%;
-}
-
-.status-pill[data-status="in_use"],
-.status-pill[data-status="pending"],
-.status-pill[data-status="starting"] {
-  color: var(--amber);
-  background: var(--amber-soft);
-}
-
-.status-pill[data-status="out_of_service"],
-.status-pill[data-status="open"],
-.status-pill[data-status="offline"] {
-  color: var(--red);
-  background: var(--red-soft);
-}
-
-.status-pill[data-status="resolved"],
-.status-pill[data-status="confirmed"],
-.status-pill[data-status="reserved"],
-.status-pill[data-status="active"] {
-  color: var(--teal);
-  background: var(--teal-soft);
-}
-
-.status-pill[data-status="scheduled"] {
-  color: var(--blue);
-  background: var(--blue-soft);
-}
-
-.machine-card h3 {
-  margin: 22px 0 6px;
-  font-size: 22px;
-  font-weight: 500;
-}
-
-.machine-location {
-  min-height: 40px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.smart-meter {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.smart-meter > span {
-  min-width: 0;
-  padding: 10px 8px;
-  background: var(--surface-soft);
-  border: 1px solid #dfebf2;
-  border-radius: 10px;
-}
-
-.smart-meter small,
-.smart-meter strong {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.smart-meter small {
-  margin-bottom: 4px;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.smart-meter strong {
-  font-size: 12px;
-}
-
-.relay-state[data-on="true"],
-.device-state[data-online="true"],
-.mini-state[data-on="true"],
-.mini-state[data-online="true"] {
-  color: var(--green);
-}
-
-.relay-state[data-on="false"],
-.device-state[data-online="false"],
-.mini-state[data-on="false"],
-.mini-state[data-online="false"] {
-  color: var(--red);
-}
-
-.next-slot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 20px 0 17px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  font-size: 13px;
-}
-
-.next-slot span {
-  color: var(--muted);
-}
-
-.machine-card .primary-button,
-.machine-card .secondary-button {
-  width: 100%;
-}
-
-.panel {
-  padding: 22px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 12px 35px rgba(16, 47, 75, 0.07);
-}
-
-.split-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.72fr);
-  gap: 20px;
-  align-items: start;
-}
-
-.booking-list,
-.fault-list {
-  display: grid;
-  gap: 12px;
-}
-
-.booking-row,
-.fault-row {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 14px;
-  padding: 15px;
-  background: var(--surface-soft);
-  border: 1px solid #dfebf2;
-  border-radius: 14px;
-}
-
-.booking-date {
-  width: 62px;
-  padding: 8px 5px;
-  color: #fff;
-  background: var(--navy-900);
-  border-radius: 12px;
-  text-align: center;
-}
-
-.booking-date strong,
-.booking-date small {
-  display: block;
-}
-
-.booking-date strong {
-  font-size: 19px;
-}
-
-.booking-date small {
-  color: #c7d8e5;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.booking-row h3,
-.fault-row h3 {
-  margin: 0 0 5px;
-  font-size: 16px;
-}
-
-.booking-row p,
-.fault-row p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.booking-status {
-  display: inline-flex;
-  margin-left: 7px;
-  padding: 4px 7px;
-  color: var(--teal);
-  background: var(--teal-soft);
-  border-radius: 999px;
-  font-size: 10px;
-  vertical-align: middle;
-}
-
-.booking-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.booking-actions button {
-  padding-inline: 13px;
-}
-
-.quick-card {
-  padding: 23px;
-  color: #fff;
-  background: var(--navy-900);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
-}
-
-.quick-card h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 500;
-}
-
-.quick-card p {
-  margin: 10px 0 20px;
-  color: #cbdbe7;
-  line-height: 1.55;
-}
-
-.quick-card .secondary-button {
-  width: 100%;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.22);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin-bottom: 24px;
-}
-
-.table-subtitle {
-  display: block;
-  margin-top: 4px;
-  color: var(--muted);
-  font-weight: 400;
-}
-
-.mini-state {
-  display: inline-flex;
-  padding: 5px 8px;
-  background: var(--surface-soft);
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.stat-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 19px;
-  border-radius: var(--radius-md);
-  box-shadow: 0 10px 28px rgba(16, 47, 75, 0.06);
-}
-
-.stat-icon {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
-  display: grid;
-  place-items: center;
-  color: var(--teal);
-  background: var(--teal-soft);
-  border-radius: 13px;
-}
-
-.stat-icon svg {
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.stat-card strong,
-.stat-card small {
-  display: block;
-}
-
-.stat-card strong {
-  font-size: 28px;
-  line-height: 1;
-}
-
-.stat-card small {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.admin-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 18px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.admin-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.admin-tabs button {
-  min-height: 44px;
-  padding: 9px 15px;
-  color: var(--muted);
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 11px;
-  cursor: pointer;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.admin-tabs button.is-active {
-  color: var(--navy-900);
-  background: #fff;
-  border-color: var(--line);
-  box-shadow: 0 7px 22px rgba(16, 47, 75, 0.08);
-}
-
-.data-table-wrap {
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.data-table th,
-.data-table td {
-  padding: 15px 13px;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  vertical-align: middle;
-}
-
-.data-table th {
-  color: #fff;
-  background: var(--navy-900);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.data-table th:first-child {
-  border-radius: 12px 0 0 0;
-}
-
-.data-table th:last-child {
-  border-radius: 0 12px 0 0;
-}
-
-.data-table tr:last-child td {
-  border-bottom: 0;
-}
-
-.inline-select {
-  min-height: 40px;
-  padding: 8px 31px 8px 10px;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid #bdcedb;
-  border-radius: 10px;
-}
-
-.empty-state {
-  padding: 34px 20px;
-  color: var(--muted);
-  background: #f7f9fb;
-  border: 1px dashed #c6d4df;
-  border-radius: 14px;
-  text-align: center;
-}
-
-.empty-state svg {
-  width: 38px;
-  height: 38px;
-  margin-bottom: 8px;
-  fill: none;
-  stroke: #89a0b3;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.dialog {
-  width: min(590px, calc(100% - 28px));
-  max-height: calc(100vh - 28px);
-  padding: 0;
-  color: var(--ink);
-  background: #fff;
-  border: 0;
-  border-radius: 22px;
-  box-shadow: 0 35px 90px rgba(7, 29, 47, 0.3);
-}
-
-.dialog::backdrop {
-  background: rgba(8, 27, 42, 0.67);
-  backdrop-filter: blur(4px);
-}
-
-.dialog form {
-  max-height: inherit;
-  overflow-y: auto;
-}
-
-.dialog-head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 24px 24px 17px;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
-}
-
-.dialog h2 {
-  font-size: 25px;
-  font-weight: 500;
-}
-
-.dialog .icon-button {
-  flex: 0 0 44px;
-  color: var(--ink);
-  border-color: var(--line);
-}
-
-.dialog-body {
-  padding: 22px 24px 4px;
-}
-
-.dialog-actions {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 18px 24px 24px;
-  background: #fff;
-}
-
-.slot-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 9px;
-}
-
-.slot-option {
-  position: relative;
-}
-
-.slot-option input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.slot-option label {
-  min-height: 48px;
-  display: grid;
-  place-items: center;
-  padding: 8px;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid #bdcedb;
-  border-radius: 11px;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.slot-option input:checked + label {
-  color: #fff;
-  background: var(--blue);
-  border-color: var(--blue);
-}
-
-.slot-option input:disabled + label {
-  cursor: not-allowed;
-  color: #9caab5;
-  background: #eef2f5;
-  text-decoration: line-through;
-}
-
-.confirm-card {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 14px;
-  margin-bottom: 18px;
-  padding: 16px;
-  background: var(--blue-soft);
-  border-radius: 14px;
-}
-
-.confirm-card svg {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: var(--blue);
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.confirm-card strong,
-.confirm-card span {
-  display: block;
-}
-
-.confirm-card span {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.toast-region {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 70;
-  display: grid;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.toast {
-  width: min(390px, calc(100vw - 40px));
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 11px;
-  padding: 15px 17px;
-  color: #fff;
-  background: var(--navy-900);
-  border-radius: 14px;
-  box-shadow: 0 20px 50px rgba(6, 28, 45, 0.26);
-  animation: toast-in 230ms ease both;
-}
-
-.toast[data-type="error"] {
-  background: #8d2f29;
-}
-
-.toast svg {
-  width: 21px;
-  height: 21px;
-  fill: none;
-  stroke: #7ed6ce;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.toast[data-type="error"] svg {
-  stroke: #ffd3d0;
-}
-
-.toast strong,
-.toast span {
-  display: block;
-}
-
-.toast span {
-  margin-top: 3px;
-  color: #d2e1eb;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-@keyframes toast-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-}
-
-@media (max-width: 940px) {
-  .login-layout,
-  .split-layout {
-    grid-template-columns: 1fr;
+(() => {
+  "use strict";
+
+  const config = window.DORMLAUNDRY_CONFIG || {};
+  const isLive = config.DATA_MODE === "live" && Boolean(config.SUPABASE_URL && config.SUPABASE_ANON_KEY);
+
+  const STORAGE = {
+    data: "dormlaundry.smart.demo.data.v2",
+    session: "dormlaundry.smart.session.v2",
+  };
+
+  const STATUS_LABELS = {
+    available: "Available",
+    reserved: "Reserved",
+    starting: "Starting",
+    in_use: "In use",
+    out_of_service: "Out of service",
+    offline: "Offline",
+    scheduled: "Scheduled",
+    active: "Active",
+    completed: "Completed",
+    cancelled: "Cancelled",
+    missed: "Missed",
+    open: "Open",
+    pending: "In progress",
+    resolved: "Resolved",
+    confirmed: "Confirmed",
+  };
+
+  const icons = {
+    washer: `<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="5" width="32" height="38" rx="4"></rect><path d="M8 14h32"></path><circle cx="24" cy="28" r="10"></circle><path d="M16.5 28c3-3 6 3 10 0 2-1.4 3.6-1.5 5-.8"></path><path d="M14 9h.01M19 9h.01"></path></svg>`,
+    booking: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M7 3v4M17 3v4M3 10h18"></path><path d="m8 15 2 2 5-5"></path></svg>`,
+    fault: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 3.7 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.7a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4M12 17h.01"></path></svg>`,
+    empty: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"></path><path d="M8 4h8v3M8 12h8M8 16h5"></path></svg>`,
+    success: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 2.5 2.5L16 9"></path></svg>`,
+    machine: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M4 7h16"></path><circle cx="12" cy="14" r="5"></circle></svg>`,
+    users: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"></path></svg>`,
+  };
+
+  const app = document.querySelector("#app");
+  const logoutButton = document.querySelector("#logoutButton");
+  const modeBadge = document.querySelector("#modeBadge");
+  const helpButton = document.querySelector("#helpButton");
+  const dialog = document.querySelector("#appDialog");
+  const dialogForm = document.querySelector("#dialogForm");
+  const dialogTitle = document.querySelector("#dialogTitle");
+  const dialogEyebrow = document.querySelector("#dialogEyebrow");
+  const dialogBody = document.querySelector("#dialogBody");
+  const dialogActions = document.querySelector("#dialogActions");
+  const toastRegion = document.querySelector("#toastRegion");
+
+  const state = {
+    user: null,
+    token: null,
+    role: "resident",
+    adminTab: "machines",
+    machines: [],
+    bookings: [],
+    faults: [],
+    busy: false,
+  };
+
+  const demoSeed = {
+    machines: [
+      {
+        machine_id: 1,
+        machine_name: "Washer 1",
+        status: "available",
+        location: "Main Dormitory Laundry Room",
+        power_watts: 0.4,
+        relay_state: true,
+        desired_relay_state: true,
+        last_seen_at: new Date().toISOString(),
+      },
+      {
+        machine_id: 2,
+        machine_name: "Washer 2",
+        status: "in_use",
+        location: "Main Dormitory Laundry Room",
+        power_watts: 486.2,
+        relay_state: true,
+        desired_relay_state: true,
+        last_seen_at: new Date().toISOString(),
+      },
+      {
+        machine_id: 3,
+        machine_name: "Washer 3",
+        status: "reserved",
+        location: "Main Dormitory Laundry Room",
+        power_watts: 0,
+        relay_state: false,
+        desired_relay_state: false,
+        last_seen_at: new Date().toISOString(),
+      },
+    ],
+    bookings: [
+      {
+        booking_id: "demo-booking-ready",
+        user_id: "demo-resident",
+        machine_id: 3,
+        slot_time: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
+        ends_at: new Date(Date.now() + 115 * 60 * 1000).toISOString(),
+        status: "scheduled",
+        created_at: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
+      },
+    ],
+    faults: [
+      {
+        report_id: "demo-fault-1",
+        machine_id: 2,
+        user_id: "demo-resident",
+        description: "The machine makes a loud noise during the spin cycle.",
+        status: "open",
+        reported_at: new Date(Date.now() - 86400000).toISOString(),
+      },
+      {
+        report_id: "demo-fault-2",
+        machine_id: 1,
+        user_id: "demo-resident",
+        description: "The door did not lock after loading.",
+        status: "resolved",
+        reported_at: new Date(Date.now() - 5 * 86400000).toISOString(),
+        responded_at: new Date(Date.now() - 4 * 86400000).toISOString(),
+        resolved_at: new Date(Date.now() - 4 * 86400000).toISOString(),
+        admin_response: "The door latch was replaced. Thank you for letting us know.",
+      },
+    ],
+  };
+
+  function clone(value) {
+    return JSON.parse(JSON.stringify(value));
   }
 
-  .intro-panel {
-    min-height: 410px;
+  function normalizeStatus(value) {
+    return String(value || "available").trim().toLowerCase().replaceAll(" ", "_");
   }
 
-  .machine-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 650px) {
-  .topbar {
-    min-height: 68px;
-    padding: 10px 14px;
+  function uuid() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    return `demo-${Date.now()}-${Math.random().toString(16).slice(2)}`;
   }
 
-  .brand small,
-  .mode-badge {
-    display: none;
+  function initials(email) {
+    return String(email || "DL")
+      .split("@")[0]
+      .split(/[._-]/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase())
+      .join("") || "DL";
   }
 
-  .topbar .ghost-button {
-    min-height: 40px;
-    min-width: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 8px;
-    font-size: 0;
+  function formatDate(iso) {
+    const date = new Date(iso);
+    return new Intl.DateTimeFormat("en", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
   }
 
-  .topbar .ghost-button::after {
-    content: "Exit";
-    font-size: 11px;
+  function bookingDateBlock(iso) {
+    const date = new Date(iso);
+    const day = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(date);
+    const month = new Intl.DateTimeFormat("en", { month: "short" }).format(date);
+    return `<div class="booking-date"><strong>${day}</strong><small>${month}</small></div>`;
   }
 
-  .brand-mark {
-    width: 42px;
-    height: 42px;
-    flex-basis: 42px;
+  function showToast(title, message, type = "success") {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.dataset.type = type;
+    toast.innerHTML = `${type === "error" ? icons.fault : icons.success}<div><strong>${escapeHtml(title)}</strong><span>${escapeHtml(message)}</span></div>`;
+    toastRegion.append(toast);
+    window.setTimeout(() => toast.remove(), 4200);
   }
 
-  .app-main {
-    width: min(100% - 24px, 1180px);
-    padding-top: 25px;
+  function getDemoData() {
+    const saved = localStorage.getItem(STORAGE.data);
+    if (!saved) {
+      const data = clone(demoSeed);
+      localStorage.setItem(STORAGE.data, JSON.stringify(data));
+      return data;
+    }
+    try {
+      return JSON.parse(saved);
+    } catch {
+      const data = clone(demoSeed);
+      localStorage.setItem(STORAGE.data, JSON.stringify(data));
+      return data;
+    }
   }
 
-  .login-layout {
-    gap: 14px;
+  function saveDemoData() {
+    localStorage.setItem(
+      STORAGE.data,
+      JSON.stringify({ machines: state.machines, bookings: state.bookings, faults: state.faults }),
+    );
   }
 
-  .intro-panel {
-    min-height: 390px;
-    padding: 30px 25px;
-    border-radius: 22px;
+  async function api(path, options = {}) {
+    const url = `${String(config.SUPABASE_URL).replace(/\/$/, "")}${path}`;
+    const headers = {
+      apikey: config.SUPABASE_ANON_KEY,
+      "Content-Type": "application/json",
+      ...options.headers,
+    };
+    if (state.token) headers.Authorization = `Bearer ${state.token}`;
+    const response = await fetch(url, { ...options, headers });
+    const text = await response.text();
+    let body = null;
+    if (text) {
+      try {
+        body = JSON.parse(text);
+      } catch {
+        body = text;
+      }
+    }
+    if (!response.ok) {
+      throw new Error(body?.message || body?.msg || body?.error_description || body?.error || body?.hint || `Request failed (${response.status})`);
+    }
+    return body;
   }
 
-  .intro-panel h1 {
-    font-size: 43px;
+  async function signInLive(email, password) {
+    const body = await api("/auth/v1/token?grant_type=password", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    });
+    state.token = body.access_token;
+    const user = body.user;
+    const profiles = await api(`/rest/v1/users?user_id=eq.${encodeURIComponent(user.id)}&select=user_id,email,role&limit=1`);
+    const profile = profiles?.[0] || {};
+    state.user = { id: user.id, email: profile.email || user.email };
+    state.role = profile.role === "admin" ? "admin" : "resident";
+    localStorage.setItem(
+      STORAGE.session,
+      JSON.stringify({ token: state.token, user: state.user, role: state.role }),
+    );
   }
 
-  .login-card {
-    padding: 25px 20px;
-    border-radius: 22px;
+  async function loadData() {
+    if (!isLive) {
+      const data = getDemoData();
+      state.machines = data.machines.map((item) => ({
+        power_watts: 0,
+        relay_state: true,
+        desired_relay_state: true,
+        last_seen_at: new Date().toISOString(),
+        ...item,
+        status: normalizeStatus(item.status),
+      }));
+      state.bookings = data.bookings.map((item) => ({
+        status: "scheduled",
+        ends_at: new Date(new Date(item.slot_time).getTime() + 2 * 60 * 60 * 1000).toISOString(),
+        ...item,
+      }));
+      state.faults = data.faults.map((item) => ({ ...item, status: normalizeStatus(item.status) }));
+      return;
+    }
+
+    state.busySlots = [];
+    if (state.role !== "admin") {
+      try {
+        // R2: anonymous booked time ranges of all residents (no user_id), from a SECURITY DEFINER function
+        state.busySlots = (await api("/rest/v1/rpc/machine_busy_slots", { method: "POST", body: "{}" })) || [];
+      } catch {
+        state.busySlots = []; // function not installed yet: fall back to own bookings only
+      }
+    }
+
+    const bookingFilter = state.role === "admin" ? "" : `&user_id=eq.${encodeURIComponent(state.user.id)}`;
+    const [machines, bookings, faults] = await Promise.all([
+      api("/rest/v1/machines?select=*&order=machine_id.asc"),
+      api(`/rest/v1/bookings?select=*&order=slot_time.asc${bookingFilter}`),
+      api(`/rest/v1/fault_reports?select=*&order=reported_at.desc`),
+    ]);
+    state.machines = machines.map((item) => ({ ...item, status: normalizeStatus(item.status) }));
+    state.bookings = bookings;
+    state.faults = faults.map((item) => ({ ...item, status: normalizeStatus(item.status) }));
   }
 
-  .page-head {
-    align-items: flex-start;
-    flex-direction: column;
+  function machineById(machineId) {
+    return state.machines.find((item) => String(item.machine_id) === String(machineId));
   }
 
-  .user-chip {
-    width: 100%;
+  function activeBookings() {
+    return state.bookings
+      .filter((item) => !["completed", "cancelled", "missed"].includes(normalizeStatus(item.status || "scheduled")))
+      .filter((item) => new Date(item.ends_at || item.slot_time).getTime() > Date.now())
+      .sort((a, b) => new Date(a.slot_time) - new Date(b.slot_time));
   }
 
-  .machine-grid,
-  .stats-grid {
-    grid-template-columns: 1fr;
+  function plugOnline(machine) {
+    if (!machine.last_seen_at) return false;
+    return Date.now() - new Date(machine.last_seen_at).getTime() < 90 * 1000;
   }
 
-  .booking-row,
-  .fault-row {
-    grid-template-columns: auto minmax(0, 1fr);
+  // ---- Booking time rules --------------------------------------------------
+  const EARLY_START_MS = 15 * 60 * 1000; // the owner may start the washer up to 15 min before the slot
+
+  function bookingWindow(booking) {
+    const start = new Date(booking.slot_time).getTime();
+    const end = new Date(booking.ends_at || start + 2 * 60 * 60 * 1000).getTime();
+    return { start, end };
   }
 
-  .booking-row > :last-child,
-  .fault-row > :last-child {
-    grid-column: 1 / -1;
+  // True while the owner is allowed to start: from 15 min before the slot until it ends.
+  function bookingOpen(booking) {
+    const { start, end } = bookingWindow(booking);
+    const now = Date.now();
+    return now >= start - EARLY_START_MS && now < end;
   }
 
-  .booking-row .secondary-button,
-  .fault-row .secondary-button {
-    width: 100%;
+  function formatTime(ms) {
+    return new Intl.DateTimeFormat("en", { hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
   }
 
-  .booking-actions {
-    display: grid;
-    grid-template-columns: 1fr;
+  function bookingConflict(machineId, startMs, endMs, ignoreId = null) {
+    const ignored = ignoreId ? state.bookings.find((item) => String(item.booking_id) === String(ignoreId)) : null;
+    const own = state.bookings.find((item) => {
+      if (String(item.booking_id) === String(ignoreId)) return false;
+      if (String(item.machine_id) !== String(machineId)) return false;
+      if (["completed", "cancelled", "missed"].includes(normalizeStatus(item.status || "scheduled"))) return false;
+      const { start, end } = bookingWindow(item);
+      return startMs < end && endMs > start;
+    });
+    if (own) return own;
+    // other residents' bookings (anonymous time ranges)
+    return (state.busySlots || []).find((slot) => {
+      if (String(slot.machine_id) !== String(machineId)) return false;
+      const start = new Date(slot.slot_time).getTime();
+      const end = new Date(slot.ends_at).getTime();
+      if (ignored && new Date(ignored.slot_time).getTime() === start && String(ignored.machine_id) === String(slot.machine_id)) return false;
+      return startMs < end && endMs > start;
+    });
   }
 
-  .booking-actions button {
-    width: 100%;
+  // Booked time ranges of one washer (anonymous): own bookings + other residents' ranges.
+  function busyRanges(machineId, ignoreId = null) {
+    const seen = new Set();
+    const list = [];
+    const add = (slotTime, endsAt) => {
+      const start = new Date(slotTime).getTime();
+      const end = new Date(endsAt || start + 2 * 60 * 60 * 1000).getTime();
+      if (end <= Date.now()) return;
+      const key = `${start}-${end}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      list.push({ start, end });
+    };
+    state.bookings.forEach((item) => {
+      if (String(item.machine_id) !== String(machineId)) return;
+      if (String(item.booking_id) === String(ignoreId)) return;
+      if (!["scheduled", "active"].includes(normalizeStatus(item.status || "scheduled"))) return;
+      add(item.slot_time, item.ends_at);
+    });
+    (state.busySlots || []).forEach((slot) => {
+      if (String(slot.machine_id) !== String(machineId)) return;
+      add(slot.slot_time, slot.ends_at);
+    });
+    return list.sort((a, b) => a.start - b.start);
   }
 
-  .slot-grid {
-    grid-template-columns: repeat(2, 1fr);
+  function busyRangesHtml(machineId, ignoreId = null) {
+    const ranges = busyRanges(machineId, ignoreId);
+    if (!ranges.length) return `<p class="busy-ranges">No bookings yet for this washer: every time is free.</p>`;
+    return `<div class="busy-ranges"><strong>Already booked</strong><ul>${ranges.map((r) => `<li>${escapeHtml(formatDate(new Date(r.start).toISOString()))} – ${escapeHtml(formatTime(r.end))}</li>`).join("")}</ul></div>`;
   }
 
-  .dialog-head,
-  .dialog-body,
-  .dialog-actions {
-    padding-left: 18px;
-    padding-right: 18px;
+  // Same rule as the database function process_device_telemetry: a free washer whose booked
+  // slot has begun (slot_time <= now < ends_at) is "Reserved" and its outlet is held OFF.
+  function effectiveMachine(machine) {
+    if (normalizeStatus(machine.status) !== "available") return machine;
+    const held = state.bookings.find(
+      (item) =>
+        String(item.machine_id) === String(machine.machine_id) &&
+        normalizeStatus(item.status || "scheduled") === "scheduled" &&
+        Date.now() >= bookingWindow(item).start &&
+        Date.now() < bookingWindow(item).end,
+    );
+    return held ? { ...machine, status: "reserved", relay_state: false, held } : machine;
   }
 
-  .dialog-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  function machineHint(machine, status) {
+    if (status === "in_use" || status === "starting") {
+      const now = Date.now();
+      const current = state.bookings.find((item) => {
+        if (String(item.machine_id) !== String(machine.machine_id)) return false;
+        if (!["scheduled", "active"].includes(normalizeStatus(item.status || "scheduled"))) return false;
+        const { start, end } = bookingWindow(item);
+        return now >= start - EARLY_START_MS && now < end;
+      });
+      const when = current
+        ? `In use. Booked until ${formatTime(bookingWindow(current).end)}.`
+        : "In use without a booking. Finish time unknown.";
+      const signal = plugOnline(machine) ? "" : " No signal from the plug: last known state.";
+      return `<p class="machine-hint">${when} Booking reopens when the cycle ends.${signal}</p>`;
+    }
+    if (status === "reserved") {
+      const until = machine.held ? ` until ${formatTime(bookingWindow(machine.held).end)}` : "";
+      return `<p class="machine-hint">On hold for a booking${until}. The outlet stays off until the owner starts the washer.</p>`;
+    }
+    return "";
   }
 
-  .dialog-actions button {
-    width: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Booking-screen preview on the start screen (shown at 360 px width) */
-.intro-figure {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 360px;
-  margin: 28px 0 0;
-}
-
-.intro-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: #fff;
-}
-
-.intro-figure figcaption {
-  margin-top: 8px;
-  color: #e7f1f7; /* on #102f4b navy: contrast > 12:1 */
-  font-size: 0.875rem;
-}
-
-/* Sound toggle: state is shown by the icon shape, not only by colour */
-#soundButton[aria-pressed="false"] .sound-waves,
-#soundButton[aria-pressed="true"] .sound-off {
-  display: none;
-}
-
-/* Machine hint and booking summary */
-.machine-hint {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 0.8125rem;
-  line-height: 1.4;
-}
-
-.booking-summary {
-  margin: 12px 0 0;
-  color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.booking-summary[data-state="error"] {
-  color: #b42318;
-}
-
-/* Fault history, My reports, admin reply */
-.history-link {
-  display: block;
-  margin: 10px auto 0;
-  padding: 6px 4px;
-  border: 0;
-  background: none;
-  color: var(--blue);
-  font: inherit;
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.report-list {
-  display: grid;
-  gap: 12px;
-  max-height: 55vh;
-  overflow-y: auto;
-}
-
-.report-item {
-  padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface-soft);
-}
-
-.report-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 12px;
-}
-
-.report-head small {
-  color: var(--muted);
-}
-
-.report-item p {
-  margin: 8px 0 0;
-  line-height: 1.5;
-}
-
-.report-reply {
-  margin-top: 10px;
-  padding: 10px 12px;
-  border-left: 3px solid var(--teal);
-  border-radius: 6px;
-  background: var(--teal-soft);
-}
-
-.report-reply strong {
-  font-size: 0.8125rem;
-}
-
-.fault-response {
-  color: var(--ink);
-}
-
-.fault-reply-button {
-  min-height: 36px;
-  margin-top: 8px;
-  padding: 6px 14px;
-}
-
-/* Statistics panel */
-.stats-charts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 16px;
-}
-
-.chart-card {
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: #fff;
-}
-
-.chart-card:first-child {
-  grid-column: 1 / -1;
-}
-
-.chart-card h3 {
-  margin: 0 0 12px;
-  font-size: 1rem;
-}
-
-.chart-svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 300px;
-}
-
-.bar-chart {
-  display: grid;
-  gap: 10px;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 84px 1fr 56px;
-  align-items: center;
-  gap: 10px;
-}
-
-.bar-track {
-  height: 18px;
-  border-radius: 9px;
-  background: var(--blue-soft);
-  overflow: hidden;
-}
-
-.bar-fill {
-  display: block;
-  height: 100%;
-  border-radius: 9px;
-  background: var(--blue);
-}
-
-.bar-value {
-  text-align: right;
-}
-
-.chart-axis {
-  margin: 8px 0 0;
-  text-align: center;
-  font-size: 0.8125rem;
-  font-weight: 600;
-}
-
-.chart-note {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: 0.8125rem;
-}
-
-/* Touch targets: at least 44 x 44 px (Stage 1 criterion 3) */
-.brand {
-  min-height: 44px;
-}
-
-.topbar .ghost-button {
-  min-height: 44px;
-}
-
-.history-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 44px;
-  margin-top: 6px;
-}
-
-/* ---- Final features: bell, busy ranges, notice list ---- */
-.bell-button { position: relative; }
-.bell-count {
-  position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px;
-  border-radius: 9px; background: #d64545; color: #fff; font-size: 11px; font-weight: 700;
-  display: grid; place-items: center; line-height: 1;
-}
-.bell-count.is-hidden { display: none; }
-.busy-ranges { margin: 12px 0 0; padding: 10px 14px; border: 1px solid var(--line, #d9e2ec); border-radius: 10px; background: rgba(18, 136, 134, 0.06); font-size: 14px; }
-.busy-ranges ul { margin: 6px 0 0; padding-left: 18px; }
-.busy-ranges li { margin: 2px 0; }
-.notice-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-height: 50vh; overflow: auto; }
-.notice-list li { display: grid; gap: 2px; padding: 10px 14px; border: 1px solid var(--line, #d9e2ec); border-radius: 10px; }
-.notice-list li[data-read="false"] { border-color: #128886; background: rgba(18, 136, 134, 0.08); }
-.notice-list small { color: var(--muted, #5b6b7a); }
-.section-head .primary-button { white-space: nowrap; }
-
-/* Layout fix: more room next to the fault list and the "Report a fault" card */
-.split-layout {
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
-  gap: 24px;
-}
-
-.quick-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.quick-card p {
-  margin: 0 0 8px;
-}
-
-.quick-card .secondary-button {
-  min-height: 46px;
-  white-space: normal;
-}
-
-.fault-row {
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: start;
-}
-
-.fault-row > .inline-select {
-  grid-column: 2;
-  justify-self: start;
-  min-width: 150px;
-}
-
-.fault-row p {
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 1100px) {
-  .split-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Phone fix: header buttons no longer overlap the logo; all admin tabs are visible */
-@media (max-width: 650px) {
-  .topbar {
-    flex-wrap: wrap;
-    gap: 10px 12px;
+  function nextBookingFor(machineId) {
+    return activeBookings().find((item) => String(item.machine_id) === String(machineId));
   }
 
-  .brand {
-    flex: 0 0 auto;
+  function userChip() {
+    return `<div class="user-chip"><span class="avatar">${escapeHtml(initials(state.user?.email))}</span><span><strong>${escapeHtml(state.user?.email)}</strong><small>${state.role === "admin" ? "Administrator" : "Resident"}</small></span></div>`;
   }
 
-  .topbar-actions {
-    flex: 1 1 auto;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 8px;
+  // Preview of the booking screen. Optimised: WebP, 360 px + 720 px (for 2x screens).
+  // Open the site with ?before to load the original 1088 px PNG instead (for the before/after measurement).
+  function introFigure() {
+    const alt = "Screenshot of the Resident booking screen: three washers, each marked Available, with a Choose a time button.";
+    const img = (window.DORMLAUNDRY_BEFORE === true || new URLSearchParams(window.location.search).has("before"))
+      ? `<img src="./img/prototype.png" width="1088" height="839" alt="${alt}" />`
+      : `<img src="./media/prototype-360.webp" srcset="./media/prototype-360.webp 360w, ./media/prototype-720.webp 720w" sizes="360px" width="360" height="278" alt="${alt}" decoding="async" />`;
+    return `<figure class="intro-figure">${img}<figcaption>Preview of the booking screen.</figcaption></figure>`;
   }
 
-  .admin-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: visible;
+  function renderLogin() {
+    logoutButton.classList.add("is-hidden");
+    renderBell();
+    app.innerHTML = `
+      <section class="login-layout" aria-labelledby="welcomeTitle">
+        <div class="intro-panel">
+          <p class="eyebrow">University dormitory service</p>
+          <h1 id="welcomeTitle">Laundry without the waiting.</h1>
+          <p class="intro-copy">Check machine status before walking downstairs, reserve a fair time and report faults from one clear screen.</p>
+          <ul class="feature-list">
+            <li>${icons.booking}<span>Reserve an available washer in under a minute</span></li>
+            <li>${icons.machine}<span>See live availability and your next booking</span></li>
+            <li>${icons.fault}<span>Report a problem directly to the administrator</span></li>
+          </ul>
+          ${introFigure()}
+        </div>
+        <form id="loginForm" class="login-card">
+          <p class="eyebrow">${isLive ? "Secure Supabase sign-in" : "Interactive demonstration"}</p>
+          <h2>Welcome back</h2>
+          <p>Use your university email to enter the laundry room service.</p>
+          <div class="field">
+            <label for="email">University email</label>
+            <input id="email" name="email" type="email" value="student@university.edu" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" value="demo1234" autocomplete="current-password" minlength="6" required />
+          </div>
+          <div class="field ${isLive ? "is-hidden" : ""}">
+            <span class="field-label">Demo role</span>
+            <div class="segmented" role="group" aria-label="Choose demo role">
+              <button type="button" class="is-active" data-role="resident">Resident</button>
+              <button type="button" data-role="admin">Administrator</button>
+            </div>
+          </div>
+          <button class="primary-button login-submit" type="submit">Sign in</button>
+          <p class="login-note">
+            ${icons.success}
+            <span>${isLive ? "Credentials are sent directly to Supabase Auth. The site never stores your password." : "Demo mode works locally and stores only sample data in this browser. Choose either role to test every screen."}</span>
+          </p>
+        </form>
+      </section>`;
+
+    let selectedRole = "resident";
+    app.querySelectorAll("[data-role]").forEach((button) => {
+      button.addEventListener("click", () => {
+        selectedRole = button.dataset.role;
+        app.querySelectorAll("[data-role]").forEach((item) => item.classList.toggle("is-active", item === button));
+      });
+    });
+
+    app.querySelector("#loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (state.busy) return;
+      state.busy = true;
+      const submit = event.currentTarget.querySelector("button[type=submit]");
+      submit.disabled = true;
+      submit.textContent = "Signing in...";
+      const form = new FormData(event.currentTarget);
+      const email = String(form.get("email")).trim();
+      const password = String(form.get("password"));
+      try {
+        if (isLive) {
+          await signInLive(email, password);
+        } else {
+          state.user = { id: selectedRole === "admin" ? "demo-admin" : "demo-resident", email };
+          state.role = selectedRole;
+          localStorage.setItem(STORAGE.session, JSON.stringify({ user: state.user, role: state.role }));
+        }
+        await loadData();
+        renderApp();
+        showToast("Signed in", `You are viewing the ${state.role} workspace.`);
+      } catch (error) {
+        showToast("Sign-in failed", error.message, "error");
+      } finally {
+        state.busy = false;
+        submit.disabled = false;
+        submit.textContent = "Sign in";
+      }
+    });
   }
 
-  .admin-tabs button {
-    width: 100%;
-    border-color: var(--line);
-    background: rgba(255, 255, 255, 0.6);
+  function renderApp() {
+    logoutButton.classList.remove("is-hidden");
+    renderBell();
+    if (state.role === "admin") renderAdmin();
+    else renderResident();
   }
-}
+
+  function machineCard(rawMachine) {
+    const machine = effectiveMachine(rawMachine);
+    const status = normalizeStatus(machine.status);
+    const next = nextBookingFor(machine.machine_id);
+    const canBook = status === "available";
+    const online = plugOnline(machine);
+    const power = Number(machine.power_watts || 0);
+    return `
+      <article class="machine-card" data-status="${escapeHtml(status)}">
+        <div class="machine-top">
+          <div class="machine-visual">${icons.washer}</div>
+          <span class="status-pill" data-status="${escapeHtml(status)}">${escapeHtml(STATUS_LABELS[status] || machine.status)}</span>
+        </div>
+        <h3>${escapeHtml(machine.machine_name)}</h3>
+        <p class="machine-location">${escapeHtml(machine.location || "Main Dormitory Laundry Room")}</p>
+        <div class="smart-meter" aria-label="Smart plug telemetry">
+          <span><small>Power</small><strong>${online ? `${escapeHtml(power.toFixed(1))} W` : "–"}</strong></span>
+          <span><small>Outlet</small><strong class="relay-state" data-on="${Boolean(machine.relay_state)}">${machine.relay_state ? "ON" : "OFF"}</strong></span>
+          <span><small>Device</small><strong class="device-state" data-online="${online}">${online ? "Online" : "Offline"}</strong></span>
+        </div>
+        <div class="next-slot"><span>Next booking</span><strong>${next ? escapeHtml(formatDate(next.slot_time)) : "No booking"}</strong></div>
+        ${machineHint(machine, status)}
+        <button class="${canBook ? "primary-button" : "secondary-button"}" type="button" data-book-machine="${escapeHtml(machine.machine_id)}" ${canBook ? "" : "disabled"}>
+          ${canBook ? "Choose a time" : (STATUS_LABELS[status] || "Unavailable")}
+        </button>
+        ${historyLink(machine.machine_id)}
+      </article>`;
+  }
+
+  function renderResident() {
+    const mine = activeBookings().filter((item) => !isLive || String(item.user_id) === String(state.user.id));
+    app.innerHTML = `
+      <section class="page-head">
+        <div class="page-title">
+          <p class="eyebrow">Resident booking</p>
+          <h1>Choose a washer</h1>
+          <p>Availability is visible before you walk to the laundry room.</p>
+        </div>
+        ${userChip()}
+      </section>
+
+      <section aria-labelledby="machinesTitle">
+        <div class="section-head">
+          <div><h2 id="machinesTitle">Machines</h2><p>${state.machines.length} washers in Main Dormitory Laundry Room</p></div>
+        </div>
+        <div class="machine-grid">${state.machines.map(machineCard).join("")}</div>
+      </section>
+
+      <section class="split-layout">
+        <div>
+          <div class="section-head"><div><h2>My bookings</h2><p>Upcoming reservations linked to your account</p></div></div>
+          <div class="panel booking-list">
+            ${mine.length ? mine.map(bookingRow).join("") : `<div class="empty-state">${icons.empty}<div>No upcoming bookings yet.</div></div>`}
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><div><h2>Need help?</h2><p>Send a fault to the administrator</p></div></div>
+          <aside class="quick-card">
+            <h2>Something is wrong?</h2>
+            <p>Describe the problem and select the washer. The laundry administrator will see the report.</p>
+            <button id="reportFaultButton" class="secondary-button" type="button">Report a fault</button>
+            <button id="myReportsButton" class="secondary-button" type="button">My reports${myReportCount()}</button>
+          </aside>
+        </div>
+      </section>`;
+
+    app.querySelectorAll("[data-book-machine]").forEach((button) => {
+      button.addEventListener("click", () => openBookingDialog(button.dataset.bookMachine));
+    });
+    app.querySelectorAll("[data-cancel-booking]").forEach((button) => {
+      button.addEventListener("click", () => openCancelDialog(button.dataset.cancelBooking));
+    });
+    app.querySelectorAll("[data-reschedule-booking]").forEach((button) => {
+      button.addEventListener("click", () => openRescheduleDialog(button.dataset.rescheduleBooking));
+    });
+    app.querySelectorAll("[data-start-booking]").forEach((button) => {
+      button.addEventListener("click", () => startBooking(button.dataset.startBooking));
+    });
+    app.querySelectorAll("[data-finish-demo]").forEach((button) => {
+      button.addEventListener("click", () => finishDemoCycle(button.dataset.finishDemo));
+    });
+    app.querySelector("#reportFaultButton").addEventListener("click", () => openFaultDialog());
+    app.querySelector("#myReportsButton").addEventListener("click", openMyReportsDialog);
+    app.querySelectorAll("[data-machine-reports]").forEach((button) => {
+      button.addEventListener("click", () => openMachineReportsDialog(button.dataset.machineReports));
+    });
+  }
+
+  function bookingRow(booking) {
+    const machine = machineById(booking.machine_id);
+    const status = normalizeStatus(booking.status || "scheduled");
+    const canStart = status === "scheduled";
+    return `
+      <article class="booking-row">
+        ${bookingDateBlock(booking.slot_time)}
+        <div><h3>${escapeHtml(machine?.machine_name || `Machine ${booking.machine_id}`)} <span class="booking-status">${escapeHtml(STATUS_LABELS[status] || status)}</span></h3><p>${escapeHtml(formatDate(booking.slot_time))} · ${escapeHtml(machine?.location || "Laundry room")}</p></div>
+        <div class="booking-actions">
+          ${canStart ? (bookingOpen(booking)
+            ? `<button class="primary-button" type="button" data-start-booking="${escapeHtml(booking.booking_id)}">Start washer</button>`
+            : `<button class="secondary-button" type="button" disabled>${bookingWindow(booking).end <= Date.now() ? "Expired" : `Opens ${escapeHtml(formatTime(bookingWindow(booking).start - EARLY_START_MS))}`}</button>`) : ""}
+          ${!isLive && status === "active" ? `<button class="secondary-button" type="button" data-finish-demo="${escapeHtml(booking.booking_id)}">Finish demo cycle</button>` : ""}
+          ${canStart ? `<button class="secondary-button" type="button" data-reschedule-booking="${escapeHtml(booking.booking_id)}">Reschedule</button>` : ""}
+          ${canStart ? `<button class="secondary-button" type="button" data-cancel-booking="${escapeHtml(booking.booking_id)}">Cancel</button>` : ""}
+        </div>
+      </article>`;
+  }
+
+  async function startBooking(bookingId) {
+    if (state.busy) return;
+    state.busy = true;
+    try {
+      const booking = state.bookings.find((item) => String(item.booking_id) === String(bookingId));
+      if (!booking) throw new Error("Booking not found.");
+      if (isLive) {
+        await api("/functions/v1/booking-control", {
+          method: "POST",
+          body: JSON.stringify({ booking_id: bookingId }),
+        });
+        await loadData();
+      } else {
+        booking.status = "active";
+        booking.started_at = new Date().toISOString();
+        const machine = machineById(booking.machine_id);
+        if (machine) {
+          machine.status = "starting";
+          machine.desired_relay_state = true;
+          machine.relay_state = true;
+          machine.power_watts = 2.1;
+          machine.last_seen_at = new Date().toISOString();
+        }
+        saveDemoData();
+        window.setTimeout(() => {
+          const currentMachine = machineById(booking.machine_id);
+          if (!currentMachine || normalizeStatus(booking.status) !== "active") return;
+          currentMachine.status = "in_use";
+          currentMachine.power_watts = 512.8;
+          currentMachine.last_seen_at = new Date().toISOString();
+          saveDemoData();
+          renderResident();
+          showToast("Power detected", "The smart plug changed the washer status to In use.");
+        }, 1400);
+      }
+      renderResident();
+      showToast("Outlet enabled", "The booking owner can now start the washer.");
+    } catch (error) {
+      showToast("Could not start", error.message, "error");
+    } finally {
+      state.busy = false;
+    }
+  }
+
+  function finishDemoCycle(bookingId) {
+    const booking = state.bookings.find((item) => String(item.booking_id) === String(bookingId));
+    if (!booking) return;
+    booking.status = "completed";
+    booking.completed_at = new Date().toISOString();
+    const machine = machineById(booking.machine_id);
+    if (machine) {
+      machine.status = "available";
+      machine.power_watts = 0.3;
+      machine.relay_state = true;
+      machine.desired_relay_state = true;
+      machine.last_seen_at = new Date().toISOString();
+    }
+    saveDemoData();
+    renderResident();
+    showToast("Cycle completed", "Power dropped and the outlet remains on because there is no active reservation.");
+  }
+
+  function openDialog({ eyebrow = "", title, body, actions }) {
+    dialogEyebrow.textContent = eyebrow;
+    dialogTitle.textContent = title;
+    dialogBody.innerHTML = body;
+    dialogActions.innerHTML = actions;
+    dialog.showModal();
+  }
+
+  function closeDialog() {
+    dialog.close();
+  }
+
+  function openBookingDialog(machineId) {
+    const raw = machineById(machineId);
+    const machine = raw && effectiveMachine(raw);
+    const status = machine ? normalizeStatus(machine.status) : "";
+    if (!machine || status !== "available") {
+      const busy = status === "in_use" || status === "starting";
+      showToast("Not available", busy ? "This washer is in use. Booking reopens when the cycle ends." : "Choose a washer marked Available.", "error");
+      return;
+    }
+    const step = 15 * 60 * 1000;
+    const toInput = (ms) => {
+      const d = new Date(ms - new Date(ms).getTimezoneOffset() * 60000);
+      return d.toISOString().slice(0, 16);
+    };
+    const laterDefault = Math.ceil((Date.now() + 30 * 60 * 1000) / step) * step;
+    openDialog({
+      eyebrow: "New booking",
+      title: machine.machine_name,
+      body: `
+        <div class="confirm-card">${icons.washer}<div><strong>${escapeHtml(machine.location)}</strong><span>Start right now or pick a time. You can start the washer up to 15 minutes early.</span></div></div>
+        <div class="field"><span class="field-label">When</span>
+          <div class="slot-grid">
+            <div class="slot-option"><input id="when-now" type="radio" name="when" value="now" checked><label for="when-now">Start now</label></div>
+            <div class="slot-option"><input id="when-later" type="radio" name="when" value="later"><label for="when-later">Pick a time</label></div>
+          </div>
+        </div>
+        <div class="field is-hidden" id="laterField"><label for="bookingStart">Start time</label>
+          <input id="bookingStart" type="datetime-local" step="900" min="${toInput(Date.now())}" max="${toInput(Date.now() + 48 * 3600 * 1000)}" value="${toInput(laterDefault)}">
+        </div>
+        <div class="field"><label for="bookingDuration">Duration</label>
+          <select id="bookingDuration">
+            <option value="30">30 minutes</option>
+            <option value="60" selected>1 hour</option>
+            <option value="90">1 hour 30 minutes</option>
+            <option value="120">2 hours</option>
+          </select>
+        </div>
+        ${busyRangesHtml(machineId)}
+        <p id="bookingSummary" class="booking-summary" aria-live="polite"></p>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button><button class="primary-button" type="button" data-confirm-booking>Book ${escapeHtml(machine.machine_name)}</button>`,
+    });
+
+    const laterField = dialog.querySelector("#laterField");
+    const startInput = dialog.querySelector("#bookingStart");
+    const durationSelect = dialog.querySelector("#bookingDuration");
+    const summary = dialog.querySelector("#bookingSummary");
+    const when = () => dialog.querySelector("input[name=when]:checked").value;
+
+    function readChoice() {
+      const minutes = Number(durationSelect.value);
+      let startMs;
+      if (when() === "now") startMs = Math.floor(Date.now() / 1000) * 1000;
+      else startMs = startInput.value ? new Date(startInput.value).getTime() : NaN;
+      if (!Number.isFinite(startMs)) return { error: "Choose a start time." };
+      if (when() === "later" && startMs < Date.now()) return { error: "That time has already passed." };
+      if (startMs > Date.now() + 48 * 3600 * 1000) return { error: "Bookings are open for the next 48 hours." };
+      const endMs = startMs + minutes * 60000;
+      const clash = bookingConflict(machineId, startMs, endMs);
+      if (clash) {
+        const w = bookingWindow(clash);
+        return { error: `This overlaps another booking (${formatTime(w.start)} – ${formatTime(w.end)}).` };
+      }
+      return { startMs, endMs, minutes };
+    }
+
+    function updateSummary() {
+      laterField.classList.toggle("is-hidden", when() !== "later");
+      const choice = readChoice();
+      if (choice.error) {
+        summary.dataset.state = "error";
+        summary.textContent = choice.error;
+        return choice;
+      }
+      summary.dataset.state = "ok";
+      const canStartNow = choice.startMs - Date.now() <= EARLY_START_MS;
+      summary.textContent = `${formatDate(new Date(choice.startMs).toISOString())} – ${formatTime(choice.endMs)}. ${canStartNow ? "You can start the washer right away." : `You can start the washer from ${formatTime(choice.startMs - EARLY_START_MS)}.`}`;
+      return choice;
+    }
+
+    dialog.querySelectorAll("input[name=when]").forEach((input) => input.addEventListener("change", updateSummary));
+    startInput.addEventListener("input", updateSummary);
+    durationSelect.addEventListener("change", updateSummary);
+    updateSummary();
+
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-confirm-booking]").addEventListener("click", async () => {
+      const choice = updateSummary();
+      if (choice.error) {
+        showToast("Check your booking", choice.error, "error");
+        return;
+      }
+      await createBooking(machineId, new Date(choice.startMs).toISOString(), choice.minutes);
+    });
+  }
+
+  async function createBooking(machineId, slotTime, durationMin = 120) {
+    if (state.busy) return;
+    state.busy = true;
+    try {
+      if (isLive) await loadData(); // re-check: nobody may book a washer that is in use or on hold
+      const current = machineById(machineId) && effectiveMachine(machineById(machineId));
+      if (!current || normalizeStatus(current.status) !== "available") {
+        throw new Error("This washer is in use or on hold, so it cannot be booked right now.");
+      }
+      const booking = {
+        booking_id: uuid(),
+        user_id: state.user.id,
+        machine_id: Number.isNaN(Number(machineId)) ? machineId : Number(machineId),
+        slot_time: slotTime,
+        ends_at: new Date(new Date(slotTime).getTime() + durationMin * 60 * 1000).toISOString(),
+        status: "scheduled",
+        created_at: new Date().toISOString(),
+      };
+      if (isLive) {
+        await api("/rest/v1/bookings", {
+          method: "POST",
+          headers: { Prefer: "return=representation" },
+          body: JSON.stringify(booking),
+        });
+        await loadData();
+      } else {
+        state.bookings.push(booking);
+        saveDemoData();
+      }
+      closeDialog();
+      renderResident();
+      const bookedText = `${machineById(machineId)?.machine_name || "Washer"} · ${formatDate(slotTime)}`;
+      showToast("Booking confirmed", bookedText);
+      pushNotice("Booking confirmed", bookedText);
+      window.DormAlerts?.requestPermission();
+      if (soundOn()) window.DormAlerts?.bookingConfirmed();
+      window.DormAlerts?.notify("Booking confirmed", bookedText);
+    } catch (error) {
+      const overlap = /exclusion|overlap|duplicate key|unique/i.test(String(error.message));
+      showToast("Booking failed", overlap ? "That time overlaps another booking for this washer. Choose a different time." : error.message, "error");
+    } finally {
+      state.busy = false;
+    }
+  }
+
+  // R5: move an existing booking to another time (same washer)
+  function openRescheduleDialog(bookingId) {
+    const booking = state.bookings.find((item) => String(item.booking_id) === String(bookingId));
+    if (!booking) return;
+    const machine = machineById(booking.machine_id);
+    const toInput = (ms) => new Date(ms - new Date(ms).getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+    const { start, end } = bookingWindow(booking);
+    const currentMinutes = Math.round((end - start) / 60000);
+    const options = [30, 60, 90, 120];
+    if (!options.includes(currentMinutes)) options.push(currentMinutes);
+    openDialog({
+      eyebrow: "Reschedule booking",
+      title: machine?.machine_name || "Washer",
+      body: `
+        <div class="confirm-card">${icons.booking}<div><strong>Now: ${escapeHtml(formatDate(booking.slot_time))} – ${escapeHtml(formatTime(end))}</strong><span>Choose a new start time. Your old slot is released only if the new one is free.</span></div></div>
+        <div class="field"><label for="rescheduleStart">New start time</label>
+          <input id="rescheduleStart" type="datetime-local" step="60" min="${toInput(Date.now())}" max="${toInput(Date.now() + 48 * 3600 * 1000)}" value="${toInput(Math.max(start, Date.now() + 15 * 60000))}">
+        </div>
+        <div class="field"><label for="rescheduleDuration">Duration</label>
+          <select id="rescheduleDuration">${options.sort((a, b) => a - b).map((m) => `<option value="${m}" ${m === currentMinutes ? "selected" : ""}>${m} minutes</option>`).join("")}</select>
+        </div>
+        ${busyRangesHtml(booking.machine_id, bookingId)}
+        <p id="rescheduleSummary" class="booking-summary" aria-live="polite"></p>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button><button class="primary-button" type="button" data-confirm-reschedule>Move booking</button>`,
+    });
+    const input = dialog.querySelector("#rescheduleStart");
+    const duration = dialog.querySelector("#rescheduleDuration");
+    const summary = dialog.querySelector("#rescheduleSummary");
+    function readChoice() {
+      const startMs = input.value ? new Date(input.value).getTime() : NaN;
+      if (!Number.isFinite(startMs)) return { error: "Choose a new start time." };
+      if (startMs < Date.now() - 60000) return { error: "That time has already passed." };
+      if (startMs > Date.now() + 48 * 3600 * 1000) return { error: "Bookings are open for the next 48 hours." };
+      const minutes = Number(duration.value);
+      const endMs = startMs + minutes * 60000;
+      const clash = bookingConflict(booking.machine_id, startMs, endMs, bookingId);
+      if (clash) {
+        const w = clash.slot_time ? bookingWindow(clash) : { start: 0, end: 0 };
+        return { error: `This overlaps another booking (${formatTime(w.start)} – ${formatTime(w.end)}).` };
+      }
+      return { startMs, endMs, minutes };
+    }
+    function update() {
+      const choice = readChoice();
+      summary.dataset.state = choice.error ? "error" : "ok";
+      summary.textContent = choice.error || `New time: ${formatDate(new Date(choice.startMs).toISOString())} – ${formatTime(choice.endMs)}.`;
+      return choice;
+    }
+    input.addEventListener("input", update);
+    duration.addEventListener("change", update);
+    update();
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-confirm-reschedule]").addEventListener("click", async () => {
+      const choice = update();
+      if (choice.error) {
+        showToast("Check the new time", choice.error, "error");
+        return;
+      }
+      if (state.busy) return;
+      state.busy = true;
+      try {
+        const newStart = new Date(choice.startMs).toISOString();
+        const newEnd = new Date(choice.endMs).toISOString();
+        if (isLive) {
+          await api("/rest/v1/rpc/reschedule_booking", {
+            method: "POST",
+            body: JSON.stringify({ p_booking_id: bookingId, p_new_start: newStart, p_minutes: choice.minutes }),
+          });
+          await loadData();
+        } else {
+          booking.slot_time = newStart;
+          booking.ends_at = newEnd;
+          saveDemoData();
+        }
+        closeDialog();
+        renderResident();
+        const text = `${machine?.machine_name || "Washer"} · ${formatDate(newStart)}`;
+        showToast("Booking moved", text);
+        pushNotice("Booking moved", text);
+      } catch (error) {
+        const overlap = /exclusion|overlap|duplicate key/i.test(String(error.message));
+        showToast("Could not move the booking", overlap ? "That time overlaps another booking. Choose a different time." : error.message, "error");
+      } finally {
+        state.busy = false;
+      }
+    });
+  }
+
+  function openCancelDialog(bookingId) {
+    const booking = state.bookings.find((item) => String(item.booking_id) === String(bookingId));
+    if (!booking) return;
+    const machine = machineById(booking.machine_id);
+    openDialog({
+      eyebrow: "Cancel booking",
+      title: "Release this time slot?",
+      body: `<div class="confirm-card">${icons.booking}<div><strong>${escapeHtml(machine?.machine_name || "Washer")}</strong><span>${escapeHtml(formatDate(booking.slot_time))}. The slot will become available to other residents.</span></div></div>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Keep booking</button><button class="danger-button" type="button" data-confirm-cancel>Cancel booking</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-confirm-cancel]").addEventListener("click", async () => {
+      try {
+        if (isLive) {
+          const url = `/rest/v1/bookings?booking_id=eq.${encodeURIComponent(bookingId)}`;
+          let kept = false;
+          try {
+            const rows = await api(url, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify({ status: "cancelled" }) });
+            kept = Array.isArray(rows) && rows.length > 0;
+          } catch {
+            kept = false;
+          }
+          if (!kept) await api(url, { method: "DELETE" }); // fallback when the policy does not allow the update
+          await loadData();
+        } else {
+          state.bookings = state.bookings.filter((item) => String(item.booking_id) !== String(bookingId));
+          saveDemoData();
+        }
+        closeDialog();
+        renderResident();
+        showToast("Booking cancelled", "The time slot is available again.");
+        pushNotice("Booking cancelled", `${machine?.machine_name || "Washer"} · ${formatDate(booking.slot_time)}`);
+      } catch (error) {
+        showToast("Cancellation failed", error.message, "error");
+      }
+    });
+  }
+
+  // ---- Fault reports: history per washer, "My reports", admin replies -------
+  function reportsFor(machineId) {
+    return state.faults
+      .filter((item) => String(item.machine_id) === String(machineId))
+      .sort((a, b) => new Date(b.reported_at) - new Date(a.reported_at));
+  }
+
+  function myReports() {
+    return state.faults
+      .filter((item) => state.user && String(item.user_id) === String(state.user.id))
+      .sort((a, b) => new Date(b.reported_at) - new Date(a.reported_at));
+  }
+
+  function myReportCount() {
+    const open = myReports().filter((item) => normalizeStatus(item.status) !== "resolved").length;
+    return open ? ` (${open} open)` : "";
+  }
+
+  function historyLink(machineId) {
+    const list = reportsFor(machineId);
+    const open = list.filter((item) => normalizeStatus(item.status) !== "resolved").length;
+    const label = list.length ? `Problem history (${list.length}${open ? `, ${open} open` : ""})` : "Problem history";
+    return `<button class="history-link" type="button" data-machine-reports="${escapeHtml(machineId)}">${label}</button>`;
+  }
+
+  function reportItem(report, { showMachine = false } = {}) {
+    const status = normalizeStatus(report.status);
+    const machineName = machineById(report.machine_id)?.machine_name || `Machine ${report.machine_id}`;
+    const closed = status === "resolved" && report.resolved_at ? ` · closed ${formatDate(report.resolved_at)}` : "";
+    const yours = state.user && String(report.user_id) === String(state.user.id);
+    return `
+      <article class="report-item">
+        <div class="report-head">
+          <span class="status-pill" data-status="${escapeHtml(status)}">${escapeHtml(STATUS_LABELS[status] || status)}</span>
+          <small>${showMachine ? `${escapeHtml(machineName)} · ` : ""}opened ${escapeHtml(formatDate(report.reported_at))}${escapeHtml(closed)}${yours && !showMachine ? " · your report" : ""}</small>
+        </div>
+        <p>${escapeHtml(report.description)}</p>
+        ${report.admin_response ? `<div class="report-reply"><strong>Administrator${report.responded_at ? ` · ${escapeHtml(formatDate(report.responded_at))}` : ""}</strong><p>${escapeHtml(report.admin_response)}</p></div>` : ""}
+      </article>`;
+  }
+
+  function openMachineReportsDialog(machineId) {
+    const machine = machineById(machineId);
+    const list = reportsFor(machineId);
+    openDialog({
+      eyebrow: "Problem history",
+      title: machine?.machine_name || "Washer",
+      body: list.length
+        ? `<div class="report-list">${list.map((item) => reportItem(item)).join("")}</div>`
+        : `<div class="confirm-card">${icons.success}<div><strong>No problems reported</strong><span>Nobody has reported a fault for this washer.</span></div></div>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Close</button><button class="primary-button" type="button" data-report-this>Report a fault</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-report-this]").addEventListener("click", () => openFaultDialog(machineId));
+  }
+
+  function openMyReportsDialog() {
+    const list = myReports();
+    openDialog({
+      eyebrow: "My reports",
+      title: "Your fault reports",
+      body: list.length
+        ? `<div class="report-list">${list.map((item) => reportItem(item, { showMachine: true })).join("")}</div>`
+        : `<div class="confirm-card">${icons.empty}<div><strong>No reports yet</strong><span>Reports you send appear here with their status and the administrator's reply.</span></div></div>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Close</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+  }
+
+  // Saves a fault change. If the new columns (reply, dates) are not in the database yet,
+  // the status change still works and the user is told to run the SQL file.
+  async function patchFault(reportId, fields) {
+    if (isLive) {
+      const url = `/rest/v1/fault_reports?report_id=eq.${encodeURIComponent(reportId)}`;
+      const request = (body) => api(url, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(body) });
+      try {
+        await request(fields);
+      } catch (error) {
+        if (/column|schema cache/i.test(String(error.message)) && fields.status) {
+          await request({ status: fields.status });
+          showToast("Reply not saved", "Run supabase/fault_reports_update.sql in Supabase to enable replies and dates.", "error");
+        } else {
+          throw error;
+        }
+      }
+      await loadData();
+    } else {
+      const fault = state.faults.find((item) => String(item.report_id) === String(reportId));
+      if (fault) Object.assign(fault, fields);
+      saveDemoData();
+    }
+  }
+
+  function openReplyDialog(reportId) {
+    const fault = state.faults.find((item) => String(item.report_id) === String(reportId));
+    if (!fault) return;
+    const machineName = machineById(fault.machine_id)?.machine_name || fault.machine_id;
+    openDialog({
+      eyebrow: "Fault report",
+      title: `Reply · ${machineName}`,
+      body: `
+        <div class="confirm-card">${icons.fault}<div><strong>${escapeHtml(fault.description)}</strong><span>Opened ${escapeHtml(formatDate(fault.reported_at))}</span></div></div>
+        <div class="field"><label for="replyText">Reply to the resident</label><textarea id="replyText" maxlength="500" placeholder="Example: A technician will check the drain on Friday.">${escapeHtml(fault.admin_response || "")}</textarea></div>
+        <div class="field"><label for="replyStatus">Status</label><select id="replyStatus">${["open", "pending", "resolved"].map((status) => `<option value="${status}" ${normalizeStatus(fault.status) === status ? "selected" : ""}>${STATUS_LABELS[status]}</option>`).join("")}</select></div>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button><button class="primary-button" type="button" data-save-reply>Save reply</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-save-reply]").addEventListener("click", async () => {
+      const text = dialog.querySelector("#replyText").value.trim();
+      const status = dialog.querySelector("#replyStatus").value;
+      const now = new Date().toISOString();
+      try {
+        await patchFault(reportId, {
+          admin_response: text || null,
+          responded_at: text ? now : null,
+          status,
+          resolved_at: status === "resolved" ? fault.resolved_at || now : null,
+        });
+        closeDialog();
+        renderAdmin();
+        showToast("Reply saved", "The resident can see it under My reports.");
+      } catch (error) {
+        showToast("Save failed", error.message, "error");
+      }
+    });
+  }
+
+  function openFaultDialog(preselectId) {
+    openDialog({
+      eyebrow: "Fault report",
+      title: "Tell us what happened",
+      body: `
+        <div class="field"><label for="faultMachine">Machine</label><select id="faultMachine">${state.machines.map((machine) => `<option value="${escapeHtml(machine.machine_id)}" ${String(machine.machine_id) === String(preselectId) ? "selected" : ""}>${escapeHtml(machine.machine_name)}</option>`).join("")}</select></div>
+        <div class="field"><label for="faultDescription">Problem description</label><textarea id="faultDescription" maxlength="500" placeholder="Example: the machine does not drain after the cycle." required></textarea></div>`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button><button class="primary-button" type="button" data-submit-fault>Send report</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    const reportId = uuid(); // one id per dialog: a repeated send can never create a second row
+    const sendButton = dialog.querySelector("[data-submit-fault]");
+    let sending = false;
+    sendButton.addEventListener("click", async () => {
+      if (sending) return; // ignore extra clicks while the report is being sent
+      const machineId = dialog.querySelector("#faultMachine").value;
+      const description = dialog.querySelector("#faultDescription").value.trim();
+      if (description.length < 8) {
+        showToast("Add more detail", "Describe the problem in at least 8 characters.", "error");
+        return;
+      }
+      sending = true;
+      sendButton.disabled = true;
+      sendButton.textContent = "Sending...";
+      const report = {
+        report_id: reportId,
+        machine_id: Number.isNaN(Number(machineId)) ? machineId : Number(machineId),
+        user_id: state.user.id,
+        description,
+        status: "open",
+        reported_at: new Date().toISOString(),
+      };
+      try {
+        if (isLive) {
+          await api("/rest/v1/fault_reports", {
+            method: "POST",
+            headers: { Prefer: "return=representation" },
+            body: JSON.stringify(report),
+          });
+          await loadData();
+        } else {
+          state.faults.unshift(report);
+          saveDemoData();
+        }
+        closeDialog();
+        renderResident();
+        showToast("Report sent", "The administrator can now review this fault.");
+      } catch (error) {
+        showToast("Report failed", error.message, "error");
+        sending = false;
+        sendButton.disabled = false;
+        sendButton.textContent = "Send report";
+      }
+    });
+  }
+
+  function renderAdmin() {
+    const openFaults = state.faults.filter((item) => normalizeStatus(item.status) !== "resolved").length;
+    const upcoming = activeBookings().length;
+    const available = state.machines.filter((item) => normalizeStatus(item.status) === "available").length;
+    const online = state.machines.filter(plugOnline).length;
+    app.innerHTML = `
+      <section class="page-head">
+        <div class="page-title">
+          <p class="eyebrow">Administrator workspace</p>
+          <h1>Laundry administration</h1>
+          <p>Monitor power, smart outlets, bookings and fault reports.</p>
+        </div>
+        ${userChip()}
+      </section>
+
+      <section class="stats-grid" aria-label="Laundry room summary">
+        ${statCard(icons.machine, state.machines.length, "Total machines")}
+        ${statCard(icons.success, available, "Available now")}
+        ${statCard(icons.booking, upcoming, "Upcoming bookings")}
+        ${statCard(icons.fault, openFaults, "Open faults")}
+        ${statCard(icons.machine, `${online}/${state.machines.length}`, "Smart plugs online")}
+      </section>
+
+      <nav class="admin-tabs" aria-label="Administration sections">
+        <button type="button" data-admin-tab="machines" class="${state.adminTab === "machines" ? "is-active" : ""}">Machines</button>
+        <button type="button" data-admin-tab="bookings" class="${state.adminTab === "bookings" ? "is-active" : ""}">Bookings</button>
+        <button type="button" data-admin-tab="faults" class="${state.adminTab === "faults" ? "is-active" : ""}">Fault reports</button>
+        <button type="button" data-admin-tab="stats" class="${state.adminTab === "stats" ? "is-active" : ""}">Statistics</button>
+      </nav>
+      <section id="adminPanel" class="panel">${adminPanel()}</section>`;
+
+    app.querySelectorAll("[data-admin-tab]").forEach((button) => {
+      button.addEventListener("click", () => {
+        state.adminTab = button.dataset.adminTab;
+        renderAdmin();
+      });
+    });
+    bindAdminActions();
+  }
+
+  function statCard(icon, value, label) {
+    return `<article class="stat-card"><span class="stat-icon">${icon}</span><span><strong>${escapeHtml(value)}</strong><small>${escapeHtml(label)}</small></span></article>`;
+  }
+
+  function adminPanel() {
+    if (state.adminTab === "bookings") return bookingsTable();
+    if (state.adminTab === "faults") return faultsTable();
+    if (state.adminTab === "stats") return statsPanel();
+    return machinesTable();
+  }
+
+  function machinesTable() {
+    return `
+      <div class="section-head"><div><h2>Machine and outlet status</h2><p>Live power comes from the smart plug; only administrators can mark a machine out of service</p></div><button class="primary-button" type="button" data-machine-edit="new">Add machine</button></div>
+      <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Machine</th><th>Status</th><th>Power</th><th>Outlet</th><th>Device</th><th>Next booking</th><th></th></tr></thead><tbody>
+        ${state.machines.map((machine) => {
+          const next = nextBookingFor(machine.machine_id);
+          const currentStatus = normalizeStatus(machine.status);
+          return `<tr><td><strong>${escapeHtml(machine.machine_name)}</strong><small class="table-subtitle">${escapeHtml(machine.location)}</small></td><td><select class="inline-select" data-machine-status="${escapeHtml(machine.machine_id)}">${["available", "reserved", "starting", "in_use", "out_of_service", "offline"].map((status) => `<option value="${status}" ${currentStatus === status ? "selected" : ""}>${STATUS_LABELS[status]}</option>`).join("")}</select></td><td><strong>${escapeHtml(Number(machine.power_watts || 0).toFixed(1))} W</strong></td><td><span class="mini-state" data-on="${Boolean(machine.relay_state)}">${machine.relay_state ? "ON" : "OFF"}</span></td><td><span class="mini-state" data-online="${plugOnline(machine)}">${plugOnline(machine) ? "Online" : "Offline"}</span></td><td>${next ? escapeHtml(formatDate(next.slot_time)) : "-"}</td><td><button class="secondary-button" type="button" data-machine-edit="${escapeHtml(machine.machine_id)}">Edit</button></td></tr>`;
+        }).join("")}
+      </tbody></table></div>`;
+  }
+
+  // ---- Statistics panel (data analysis, Part C) ------------------------------
+  // The same three questions are answered by supabase/analysis_queries.sql.
+  const HOUR_FORMAT = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", hour12: false, timeZone: "Asia/Almaty" });
+
+  function bookingStats() {
+    const perHour = Array(24).fill(0);
+    state.bookings.forEach((item) => {
+      perHour[Number(HOUR_FORMAT.format(new Date(item.slot_time))) % 24] += 1;
+    });
+    const perMachine = state.machines.map((machine) => {
+      const rows = state.bookings.filter((item) => String(item.machine_id) === String(machine.machine_id));
+      const cancelled = rows.filter((item) => normalizeStatus(item.status) === "cancelled").length;
+      return {
+        name: machine.machine_name,
+        total: rows.length,
+        cancelled,
+        pct: rows.length ? Math.round((1000 * cancelled) / rows.length) / 10 : 0,
+      };
+    });
+    return { total: state.bookings.length, perHour, perMachine };
+  }
+
+  function hourLineChart(values) {
+    const w = 640, h = 270, left = 52, right = 16, top = 16, bottom = 52;
+    const peak = Math.max(...values);
+    const top_y = Math.max(4, Math.ceil(peak / 4) * 4);
+    const x = (i) => left + (i * (w - left - right)) / 23;
+    const y = (v) => top + (1 - v / top_y) * (h - top - bottom);
+    const grid = [0, 0.25, 0.5, 0.75, 1].map((f) => {
+      const v = Math.round(top_y * f);
+      return `<line x1="${left}" x2="${w - right}" y1="${y(v)}" y2="${y(v)}" stroke="#d5e0e9"/><text x="${left - 8}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="#4a6176">${v}</text>`;
+    }).join("");
+    const ticks = values.map((_, i) => (i % 2 === 0 ? `<text x="${x(i)}" y="${h - bottom + 18}" text-anchor="middle" font-size="12" fill="#4a6176">${String(i).padStart(2, "0")}</text>` : "")).join("");
+    const points = values.map((v, i) => `${x(i)},${y(v)}`).join(" ");
+    const dots = values.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="3.5" fill="#237bd1"><title>${String(i).padStart(2, "0")}:00 - ${v} bookings</title></circle>`).join("");
+    const busiest = values.indexOf(peak);
+    return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Line chart of bookings by hour of day. Busiest hour ${String(busiest).padStart(2, "0")}:00 with ${peak} bookings." class="chart-svg">
+      ${grid}${ticks}
+      <polyline points="${points}" fill="none" stroke="#237bd1" stroke-width="2.5" stroke-linejoin="round"/>${dots}
+      <text x="${(left + w - right) / 2}" y="${h - 8}" text-anchor="middle" font-size="13" fill="#17314a">Hour of day (Astana time, 24 h)</text>
+      <text transform="translate(14 ${(top + h - bottom) / 2}) rotate(-90)" text-anchor="middle" font-size="13" fill="#17314a">Bookings (count)</text>
+    </svg>`;
+  }
+
+  function barRows(items, { max, unit }) {
+    return `<div class="bar-chart" role="list">${items.map((item) => `
+      <div class="bar-row" role="listitem">
+        <span class="bar-label">${escapeHtml(item.name)}</span>
+        <span class="bar-track"><span class="bar-fill" style="width:${max ? Math.max(2, (item.value / max) * 100) : 0}%"></span></span>
+        <strong class="bar-value">${escapeHtml(item.value)}${unit}</strong>
+      </div>`).join("")}</div>`;
+  }
+
+  function statsPanel() {
+    const stats = bookingStats();
+    if (!stats.total) {
+      return `<div class="empty-state"><strong>No bookings yet</strong><span>Statistics appear when bookings exist.</span></div>`;
+    }
+    const peak = Math.max(...stats.perHour);
+    const busiest = stats.perHour.indexOf(peak);
+    const byMachine = stats.perMachine.map((m) => ({ name: m.name, value: m.total }));
+    const byCancel = stats.perMachine.map((m) => ({ name: m.name, value: m.pct }));
+    return `
+      <div class="panel-head"><div><h2>Booking statistics</h2><p>${stats.total} bookings analysed. Busiest hour: ${String(busiest).padStart(2, "0")}:00 (${peak} bookings).</p></div></div>
+      <div class="stats-charts">
+        <section class="chart-card">
+          <h3>Q1. At which hours are washers booked most?</h3>
+          ${hourLineChart(stats.perHour)}
+          <p class="chart-note">Data source: bookings table, slot start time, all statuses.</p>
+        </section>
+        <section class="chart-card">
+          <h3>Q2. Which washer is booked most often?</h3>
+          ${barRows(byMachine, { max: Math.max(...byMachine.map((i) => i.value)), unit: "" })}
+          <p class="chart-axis">Bookings (count)</p>
+          <p class="chart-note">Data source: bookings table, grouped by machine.</p>
+        </section>
+        <section class="chart-card">
+          <h3>Q3. What share of bookings is cancelled, per washer?</h3>
+          ${barRows(byCancel, { max: 100, unit: " %" })}
+          <p class="chart-axis">Cancelled bookings (% of that washer's bookings)</p>
+          <p class="chart-note">Data source: bookings table, status = cancelled.</p>
+        </section>
+      </div>`;
+  }
+
+  function bookingsTable() {
+    const bookings = activeBookings();
+    if (!bookings.length) return `<div class="empty-state">${icons.empty}<div>No upcoming bookings.</div></div>`;
+    return `
+      <div class="section-head"><div><h2>Upcoming bookings</h2><p>All active reservations in chronological order</p></div></div>
+      <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Machine</th><th>Resident</th><th>Time</th><th>Status</th><th>Created</th></tr></thead><tbody>
+        ${bookings.map((booking) => `<tr><td><strong>${escapeHtml(machineById(booking.machine_id)?.machine_name || booking.machine_id)}</strong></td><td>${escapeHtml(booking.user_id)}</td><td>${escapeHtml(formatDate(booking.slot_time))}</td><td><span class="status-pill" data-status="${escapeHtml(normalizeStatus(booking.status || "scheduled"))}">${escapeHtml(STATUS_LABELS[normalizeStatus(booking.status || "scheduled")] || booking.status)}</span></td><td>${escapeHtml(formatDate(booking.created_at || booking.slot_time))}</td></tr>`).join("")}
+      </tbody></table></div>`;
+  }
+
+  function faultsTable() {
+    if (!state.faults.length) return `<div class="empty-state">${icons.empty}<div>No fault reports.</div></div>`;
+    return `
+      <div class="section-head"><div><h2>Fault reports</h2><p>Review problems and update their progress</p></div></div>
+      <div class="fault-list">
+        ${state.faults.map((fault) => {
+          const status = normalizeStatus(fault.status);
+          const closed = status === "resolved" && fault.resolved_at ? ` · closed ${formatDate(fault.resolved_at)}` : "";
+          return `<article class="fault-row"><span class="stat-icon">${icons.fault}</span><div><h3>${escapeHtml(machineById(fault.machine_id)?.machine_name || fault.machine_id)}</h3><p>${escapeHtml(fault.description)} · opened ${escapeHtml(formatDate(fault.reported_at))}${escapeHtml(closed)}</p>${fault.admin_response ? `<p class="fault-response"><strong>Reply:</strong> ${escapeHtml(fault.admin_response)}</p>` : ""}<button class="secondary-button fault-reply-button" type="button" data-fault-reply="${escapeHtml(fault.report_id)}">${fault.admin_response ? "Edit reply" : "Reply"}</button></div><select class="inline-select" data-fault-status="${escapeHtml(fault.report_id)}">${["open", "pending", "resolved"].map((option) => `<option value="${option}" ${status === option ? "selected" : ""}>${STATUS_LABELS[option]}</option>`).join("")}</select></article>`;
+        }).join("")}
+      </div>`;
+  }
+
+  function bindAdminActions() {
+    app.querySelectorAll("[data-machine-status]").forEach((select) => {
+      select.addEventListener("change", () => updateMachineStatus(select.dataset.machineStatus, select.value));
+    });
+    app.querySelectorAll("[data-machine-edit]").forEach((button) => {
+      button.addEventListener("click", () => openMachineDialog(button.dataset.machineEdit));
+    });
+    app.querySelectorAll("[data-fault-status]").forEach((select) => {
+      select.addEventListener("change", () => updateFaultStatus(select.dataset.faultStatus, select.value));
+    });
+    app.querySelectorAll("[data-fault-reply]").forEach((button) => {
+      button.addEventListener("click", () => openReplyDialog(button.dataset.faultReply));
+    });
+  }
+
+  // R8: administrator adds or edits a machine
+  function openMachineDialog(machineId) {
+    const isNew = machineId === "new";
+    const machine = isNew ? null : machineById(machineId);
+    if (!isNew && !machine) return;
+    openDialog({
+      eyebrow: isNew ? "New machine" : "Edit machine",
+      title: isNew ? "Add a washing machine" : machine.machine_name,
+      body: `
+        <div class="field"><label for="machineName">Name</label><input id="machineName" type="text" maxlength="40" placeholder="Washer 4" value="${escapeHtml(machine?.machine_name || "")}"></div>
+        <div class="field"><label for="machineLocation">Location</label><input id="machineLocation" type="text" maxlength="80" placeholder="Main Dormitory Laundry Room" value="${escapeHtml(machine?.location || "Main Dormitory Laundry Room")}"></div>
+        ${isNew ? `<p class="booking-summary" data-state="ok">After saving you will get the smart plug ID and token for this machine (shown once).</p>` : `<button class="secondary-button" type="button" data-issue-plug>Smart plug: get ID and token</button>`}`,
+      actions: `<button class="secondary-button" type="button" data-dialog-cancel>Back</button>${isNew ? "" : `<button class="danger-button" type="button" data-delete-machine>Delete machine</button>`}<button class="primary-button" type="button" data-save-machine>${isNew ? "Add machine" : "Save changes"}</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-delete-machine]")?.addEventListener("click", async () => {
+      const text = `Delete ${machine.machine_name}? Its bookings, fault reports and smart plug will be deleted too. This cannot be undone.`;
+      if (!window.confirm(text)) return;
+      try {
+        if (isLive) {
+          await api("/rest/v1/rpc/admin_delete_machine", {
+            method: "POST",
+            body: JSON.stringify({ p_machine_id: Number(machineId) }),
+          });
+          await loadData();
+        } else {
+          if (state.bookings.some((b) => String(b.machine_id) === String(machineId) && normalizeStatus(b.status) === "active")) {
+            throw new Error("This machine is in use now. Wait until the wash ends.");
+          }
+          state.machines = state.machines.filter((m) => String(m.machine_id) !== String(machineId));
+          state.bookings = state.bookings.filter((b) => String(b.machine_id) !== String(machineId));
+          state.faults = state.faults.filter((f) => String(f.machine_id) !== String(machineId));
+          saveDemoData();
+        }
+        closeDialog();
+        renderAdmin();
+        showToast("Machine deleted", machine.machine_name);
+      } catch (error) {
+        showToast("Delete failed", error.message, "error");
+      }
+    });
+    dialog.querySelector("[data-issue-plug]")?.addEventListener("click", () => {
+      if (window.confirm("Issue a new token? The old token of this machine's plug will stop working.")) showPlugCredentials(machineId);
+    });
+    dialog.querySelector("[data-save-machine]").addEventListener("click", async () => {
+      const name = dialog.querySelector("#machineName").value.trim();
+      const location = dialog.querySelector("#machineLocation").value.trim();
+      if (name.length < 2 || name.length > 40) return showToast("Check the form", "Machine name must be 2-40 characters.", "error");
+      if (location.length < 2 || location.length > 80) return showToast("Check the form", "Location must be 2-80 characters.", "error");
+      if (state.machines.some((m) => m.machine_name.toLowerCase() === name.toLowerCase() && String(m.machine_id) !== String(machineId))) {
+        return showToast("Check the form", "A machine with this name already exists.", "error");
+      }
+      let savedId = null;
+      try {
+        if (isLive) {
+          savedId = await api("/rest/v1/rpc/admin_save_machine", {
+            method: "POST",
+            body: JSON.stringify({ p_machine_id: isNew ? null : Number(machineId), p_name: name, p_location: location }),
+          });
+          await loadData();
+        } else if (isNew) {
+          const nextId = state.machines.reduce((max, m) => Math.max(max, Number(m.machine_id) || 0), 0) + 1;
+          savedId = nextId;
+          state.machines.push({ machine_id: nextId, machine_name: name, location, status: "available", power_watts: 0, relay_state: true, last_seen_at: new Date().toISOString() });
+          saveDemoData();
+        } else {
+          machine.machine_name = name;
+          machine.location = location;
+          saveDemoData();
+        }
+        closeDialog();
+        renderAdmin();
+        showToast(isNew ? "Machine added" : "Machine updated", `${name} · ${location}`);
+        if (isNew && savedId) showPlugCredentials(savedId);
+      } catch (error) {
+        showToast("Save failed", error.message, "error");
+      }
+    });
+  }
+
+  // Admin gets the plug ID + token ONCE (only the hash is stored) and a ready block for devices.json.
+  async function showPlugCredentials(machineId) {
+    try {
+      let creds;
+      if (isLive) {
+        const rows = await api("/rest/v1/rpc/admin_issue_plug_token", { method: "POST", body: JSON.stringify({ p_machine_id: Number(machineId) }) });
+        creds = rows?.[0];
+        if (!creds) throw new Error("No credentials returned.");
+      } else {
+        const hex = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+        creds = { device_id: uuid(), device_token: hex() + hex(), machine_name: machineById(machineId)?.machine_name || "Washer" };
+      }
+      const block = JSON.stringify({ name: creds.machine_name, id: creds.device_id, token: creds.device_token, always_running: false }, null, 2);
+      openDialog({
+        eyebrow: "Smart plug",
+        title: `${creds.machine_name}: plug credentials`,
+        body: `
+          <div class="confirm-card">${icons.success}<div><strong>Shown only once</strong><span>The database keeps only a hash of the token. Copy the block into the "devices" list of devices.json (never into git), then restart fake_plug.py.</span></div></div>
+          <div class="field"><label for="plugBlock">Add to devices.json</label><textarea id="plugBlock" rows="6" readonly style="width:100%;font-family:monospace">${escapeHtml(block)}</textarea></div>`,
+        actions: `<button class="secondary-button" type="button" data-copy-plug>Copy</button><button class="primary-button" type="button" data-dialog-cancel>Done</button>`,
+      });
+      dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+      dialog.querySelector("[data-copy-plug]").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(block);
+        } catch {
+          dialog.querySelector("#plugBlock").select();
+          document.execCommand("copy");
+        }
+        showToast("Copied", "Paste it into devices.json.");
+      });
+    } catch (error) {
+      showToast("Could not issue plug credentials", error.message, "error");
+    }
+  }
+
+  async function updateMachineStatus(machineId, status) {
+    try {
+      if (isLive) {
+        await api(`/rest/v1/machines?machine_id=eq.${encodeURIComponent(machineId)}`, {
+          method: "PATCH",
+          headers: { Prefer: "return=representation" },
+          body: JSON.stringify({ status }),
+        });
+        await loadData();
+      } else {
+        const machine = machineById(machineId);
+        if (machine) machine.status = status;
+        saveDemoData();
+      }
+      renderAdmin();
+      showToast("Status updated", `${machineById(machineId)?.machine_name || "Machine"} is now ${STATUS_LABELS[status].toLowerCase()}.`);
+    } catch (error) {
+      showToast("Update failed", error.message, "error");
+      await loadData();
+      renderAdmin();
+    }
+  }
+
+  async function updateFaultStatus(reportId, status) {
+    try {
+      const fault = state.faults.find((item) => String(item.report_id) === String(reportId));
+      await patchFault(reportId, {
+        status,
+        resolved_at: status === "resolved" ? fault?.resolved_at || new Date().toISOString() : null,
+      });
+      renderAdmin();
+      showToast("Fault updated", `The report is now ${STATUS_LABELS[status].toLowerCase()}.`);
+    } catch (error) {
+      showToast("Update failed", error.message, "error");
+      await loadData();
+      renderAdmin();
+    }
+  }
+
+  function openHelp() {
+    openDialog({
+      eyebrow: isLive ? "Live database" : "Demonstration mode",
+      title: "How to test DormLaundry",
+      body: `
+        <div class="confirm-card">${icons.success}<div><strong>${isLive ? "Connected to Supabase" : "All functions are active"}</strong><span>${isLive ? "Data is loaded from your project and protected by its RLS policies." : "Data is saved in this browser. Sign in as Resident to book and report faults, then as Administrator to manage them."}</span></div></div>
+        <p style="line-height:1.6;color:var(--muted)"><strong>Resident:</strong> choose a washer, reserve a time, then press Start washer when the slot begins. The outlet is enabled only for that user.</p>
+        <p style="line-height:1.6;color:var(--muted)"><strong>Smart plug:</strong> measured power changes the status to In use. The relay is never switched off while a running load is detected.</p>
+        <p style="line-height:1.6;color:var(--muted)"><strong>Administrator:</strong> monitor power/outlet health, review bookings and process faults.</p>`,
+      actions: `<button class="primary-button" type="button" data-dialog-cancel>Got it</button>`,
+    });
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+  }
+
+  async function restoreSession() {
+    modeBadge.textContent = isLive ? "Supabase live" : "Demo mode";
+    const saved = localStorage.getItem(STORAGE.session);
+    if (!saved) {
+      renderLogin();
+      return;
+    }
+    try {
+      const session = JSON.parse(saved);
+      state.user = session.user;
+      state.role = session.role === "admin" ? "admin" : "resident";
+      state.token = isLive ? session.token : null;
+      if (isLive && !state.token) throw new Error("Missing session");
+      await loadData();
+      renderApp();
+    } catch {
+      localStorage.removeItem(STORAGE.session);
+      renderLogin();
+    }
+  }
+
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem(STORAGE.session);
+    state.user = null;
+    state.token = null;
+    state.role = "resident";
+    renderLogin();
+    showToast("Signed out", "Your session has ended.");
+  });
+
+  helpButton.addEventListener("click", openHelp);
+  dialog.querySelector(".dialog-close").addEventListener("click", closeDialog);
+  dialogForm.addEventListener("submit", (event) => event.preventDefault());
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeDialog();
+  });
+
+  // ---- Sound toggle (opt-in: nothing plays until the user turns sound on) ----
+  const SOUND_KEY = "dormlaundry.sound.v1";
+  const soundButton = document.querySelector("#soundButton");
+
+  function soundOn() {
+    try {
+      return localStorage.getItem(SOUND_KEY) === "on";
+    } catch {
+      return false;
+    }
+  }
+
+  function renderSoundButton() {
+    const on = soundOn();
+    soundButton.setAttribute("aria-pressed", String(on));
+    soundButton.setAttribute("aria-label", on ? "Turn off sound alerts" : "Turn on sound alerts");
+    soundButton.title = on ? "Sound alerts: on" : "Sound alerts: off";
+  }
+
+  soundButton.addEventListener("click", () => {
+    const next = !soundOn();
+    try {
+      localStorage.setItem(SOUND_KEY, next ? "on" : "off");
+    } catch {
+      /* preference just will not persist */
+    }
+    renderSoundButton();
+    if (next) {
+      window.DormAlerts?.requestPermission();
+      window.DormAlerts?.bookingConfirmed(); // short preview, started by the user's click
+    }
+    showToast(
+      next ? "Sound alerts on" : "Sound alerts off",
+      next ? "You will hear a signal when you book and when your time starts." : "No sounds will play. You will still see on-screen notifications.",
+    );
+  });
+  renderSoundButton();
+
+  // ---- Booking-time alert -------------------------------------------------
+  // Checks every 10 s whether one of the signed-in user's bookings has just begun.
+  const NOTIFIED_KEY = "dormlaundry.notified.bookings.v1";
+
+  function getNotified() {
+    try {
+      return new Set(JSON.parse(localStorage.getItem(NOTIFIED_KEY) || "[]"));
+    } catch {
+      return new Set();
+    }
+  }
+
+  function checkBookingTimes() {
+    if (!state.user) return;
+    const notified = getNotified();
+    const now = Date.now();
+    let fired = false;
+
+    state.bookings.forEach((booking) => {
+      if (String(booking.user_id) !== String(state.user.id)) return;
+      if (normalizeStatus(booking.status || "scheduled") !== "scheduled") return;
+      const start = new Date(booking.slot_time).getTime();
+      const end = new Date(booking.ends_at || start + 2 * 60 * 60 * 1000).getTime();
+      if (now < start || now >= end) return; // not started yet, or already over
+      if (notified.has(String(booking.booking_id))) return;
+
+      notified.add(String(booking.booking_id));
+      fired = true;
+      const machineName = machineById(booking.machine_id)?.machine_name || "Your washer";
+      const text = `${machineName} is ready - your booking has started.`;
+      showToast("Your time has come!", text);
+      pushNotice("Your time has come", text);
+      if (soundOn()) window.DormAlerts?.bookingTime();
+      window.DormAlerts?.notify("DormLaundry: your time has come", text);
+    });
+
+    if (fired) {
+      localStorage.setItem(NOTIFIED_KEY, JSON.stringify([...notified].slice(-200)));
+      if (state.role !== "admin") renderResident();
+    }
+  }
+
+  window.setInterval(checkBookingTimes, 10 * 1000);
+
+  // ---- R6: notification centre (bell with unread counter) -----------------------
+  const NOTICE_KEY = "dormlaundry.notices.v1";
+  const bellButton = document.querySelector("#bellButton");
+  const bellCount = document.querySelector("#bellCount");
+
+  function readNotices() {
+    try {
+      return JSON.parse(localStorage.getItem(NOTICE_KEY) || "[]").filter((n) => !state.user || n.user === state.user.id);
+    } catch {
+      return [];
+    }
+  }
+
+  function writeNotices(list) {
+    try {
+      const others = JSON.parse(localStorage.getItem(NOTICE_KEY) || "[]").filter((n) => state.user && n.user !== state.user.id);
+      localStorage.setItem(NOTICE_KEY, JSON.stringify([...list, ...others].slice(0, 100)));
+    } catch {
+      /* notifications just will not persist */
+    }
+  }
+
+  function renderBell() {
+    if (!bellButton) return;
+    bellButton.classList.toggle("is-hidden", !state.user);
+    const unread = readNotices().filter((n) => !n.read).length;
+    bellCount.textContent = unread > 9 ? "9+" : String(unread);
+    bellCount.classList.toggle("is-hidden", unread === 0);
+    bellButton.setAttribute("aria-label", unread ? `Notifications, ${unread} unread` : "Notifications");
+  }
+
+  function pushNotice(title, text) {
+    if (!state.user) return;
+    const list = readNotices();
+    list.unshift({ id: uuid(), user: state.user.id, title, text, at: new Date().toISOString(), read: false });
+    writeNotices(list.slice(0, 30));
+    renderBell();
+  }
+
+  function openNotices() {
+    const list = readNotices();
+    openDialog({
+      eyebrow: "Notifications",
+      title: "Your notifications",
+      body: list.length
+        ? `<ul class="notice-list">${list.map((n) => `<li data-read="${n.read}"><strong>${escapeHtml(n.title)}</strong><span>${escapeHtml(n.text)}</span><small>${escapeHtml(formatDate(n.at))}</small></li>`).join("")}</ul>`
+        : `<div class="empty-state">${icons.empty}<div>No notifications yet. You will see booking reminders and replies to your fault reports here.</div></div>`,
+      actions: `<button class="secondary-button" type="button" data-clear-notices ${list.length ? "" : "disabled"}>Clear all</button><button class="primary-button" type="button" data-dialog-cancel>Close</button>`,
+    });
+    writeNotices(list.map((n) => ({ ...n, read: true })));
+    renderBell();
+    dialog.querySelector("[data-dialog-cancel]").addEventListener("click", closeDialog);
+    dialog.querySelector("[data-clear-notices]").addEventListener("click", () => {
+      writeNotices([]);
+      renderBell();
+      closeDialog();
+    });
+  }
+
+  bellButton?.addEventListener("click", openNotices);
+
+  // Keep the screen live: re-read the data every 10 s (live mode) and redraw only when something changed.
+  let lastSignature = "";
+  let lastReportKeys = null;
+  function notifyReportChanges() {
+    if (state.role === "admin") return;
+    const keys = new Map(myReports().map((f) => [String(f.report_id), `${normalizeStatus(f.status)}|${f.admin_response || ""}`]));
+    if (lastReportKeys) {
+      myReports().forEach((f) => {
+        const before = lastReportKeys.get(String(f.report_id));
+        if (before !== undefined && before !== keys.get(String(f.report_id))) {
+          const name = machineById(f.machine_id)?.machine_name || "your washer";
+          pushNotice("Fault report updated", `${name}: ${STATUS_LABELS[normalizeStatus(f.status)] || f.status}${f.admin_response ? " - the administrator replied." : "."}`);
+          showToast("Your report was updated", `${name}: ${STATUS_LABELS[normalizeStatus(f.status)] || f.status}${f.admin_response ? " - the administrator replied." : "."}`);
+          if (soundOn()) window.DormAlerts?.bookingConfirmed();
+        }
+      });
+    }
+    lastReportKeys = keys;
+  }
+  function viewSignature() {
+    return JSON.stringify([
+      state.machines.map((m) => {
+        const e = effectiveMachine(m);
+        return [m.machine_id, e.status, e.relay_state, Number(m.power_watts || 0), plugOnline(m)];
+      }),
+      state.bookings.map((b) => [b.booking_id, b.status, bookingOpen(b)]),
+      state.faults.map((f) => [f.report_id, f.status, f.admin_response || ""]),
+    ]);
+  }
+  window.setInterval(async () => {
+    if (!state.user || state.busy || dialog.open) return;
+    if (isLive) {
+      try {
+        await loadData();
+      } catch {
+        return;
+      }
+    }
+    notifyReportChanges();
+    const signature = viewSignature();
+    if (lastSignature && signature !== lastSignature) renderApp();
+    lastSignature = signature;
+  }, 10 * 1000);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) checkBookingTimes();
+  });
+
+  restoreSession().then(checkBookingTimes);
+})();
