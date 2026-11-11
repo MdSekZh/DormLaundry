@@ -1618,3 +1618,76 @@ textarea:focus-visible {
 .notice-list li[data-read="false"] { border-color: #128886; background: rgba(18, 136, 134, 0.08); }
 .notice-list small { color: var(--muted, #5b6b7a); }
 .section-head .primary-button { white-space: nowrap; }
+
+/* Layout fix: more room next to the fault list and the "Report a fault" card */
+.split-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.8fr);
+  gap: 24px;
+}
+
+.quick-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick-card p {
+  margin: 0 0 8px;
+}
+
+.quick-card .secondary-button {
+  min-height: 46px;
+  white-space: normal;
+}
+
+.fault-row {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+}
+
+.fault-row > .inline-select {
+  grid-column: 2;
+  justify-self: start;
+  min-width: 150px;
+}
+
+.fault-row p {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phone fix: header buttons no longer overlap the logo; all admin tabs are visible */
+@media (max-width: 650px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px 12px;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .topbar-actions {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .admin-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+  }
+
+  .admin-tabs button {
+    width: 100%;
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
